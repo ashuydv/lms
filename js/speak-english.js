@@ -91,10 +91,8 @@ function renderModules(modules) {
     });
 
     // Make sure the modules list is visible on mobile
-    if (window.innerWidth < 768) {
-        document.getElementById('modules-list').classList.remove('hidden');
-        document.getElementById('mobile-lesson-view').classList.add('hidden');
-    }
+    document.getElementById('modules-list').classList.remove('hidden');
+    document.getElementById('mobile-lesson-view').classList.add('hidden');
 }
 
 function loadLesson(moduleIndex, lessonIndex) {
