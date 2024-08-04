@@ -1,0 +1,38 @@
+{
+  "modules": [
+    {
+      "title": "Introduction to English",
+      "lessons": [
+        {
+          "title": "Basic greetings",
+          "module": "Introduction to English",
+          "lessonNumber": "Lesson 01",
+          "info": "Learn common English greetings and how to use them.",
+          "resources": ["Greetings vocabulary list", "Practice worksheet"]
+        }
+      ]
+    },
+    {
+      "title": "Questions",
+      "lessons": [
+        {
+          "title": "Wh- questions",
+          "module": "Questions",
+          "lessonNumber": "Lesson 01",
+          "info": "Learn how to form and use Wh- questions in English.",
+          "resources": ["Question words chart", "Practice exercises"]
+        },
+        {
+          "title": "Responding to questions",
+          "module": "Questions",
+          "lessonNumber": "Lesson 04",
+          "info": "Learn strategies for responding to different types of questions.",
+          "resources": [
+            "Response techniques handout",
+            "Conversation practice scenarios"
+          ]
+        }
+      ]
+    }
+  ]
+}

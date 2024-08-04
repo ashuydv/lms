@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>English Speaking Partners</title>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="figtree-400 bg-[#ede9e6]">
+    <header
+        class="figtree-400 text-gray-400 bg-[#13181d] sm:fixed fixed sm:top-0 sm:w-full sm:h-28 z-20 bottom-0 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 py-0 flex-col md:flex-row items-center">
+            <nav class="flex text-center flex-wrap items-center justify-center w-full pt-3 text-base gap-3">
+                <a
+                    class="flex items-center justify-center flex-col gap-1 border-b-4 border-transparent hover:border-white w-[160px] p-4 hover:text-white figtree-400 transition-colors duration-300">
+                    <i class="fa-solid fa-house text-2xl"></i>
+                    <span class="my-1">Home</span>
+                </a>
+                <a
+                    class="flex items-center justify-center flex-col gap-1 border-b-4 border-transparent hover:border-white w-[160px] p-4 hover:text-white figtree-400 transition-colors duration-300">
+                    <i class="fa-solid fa-briefcase text-2xl"></i>
+                    <span class="my-1">Purchases</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+    <div id="header">
+        <nav class="flex text-center flex-wrap items-center justify-center w-full pt-3 text-base gap-3">
+            <a href="./index.html"
+                class="flex items-center justify-center flex-col gap-1 border-b-4 border-transparent hover:border-white w-[160px] p-4 hover:text-white figtree-400 transition-colors duration-300">
+                <i class="fa-solid fa-house text-2xl"></i>
+                <span class="my-1">Home</span>
+            </a>
+            <a
+                class="flex items-center justify-center flex-col gap-1 border-b-4 border-transparent hover:border-white w-[160px] p-4 hover:text-white figtree-400 transition-colors duration-300">
+                <i class="fa-solid fa-briefcase text-2xl"></i>
+                <span class="my-1">Purchases</span>
+            </a>
+        </nav>
+    </div>
+    <main id="content" class="min-h-screen flex flex-col justify-center items-center pb-24 bg-[#ede9e6]">
+        <div>
+            <a href="./index.html" id="back-button"
+                class="w-[100%] min-h-[72px] m-0 sm:w-[60px] sm:min-h-[60px] sm:block fixed w-full top-[-5px] left-[0px] bg-[#13181d] sm:rounded-full px-5 py-6 sm:p-0">
+                <i
+                    class="fa-solid text-white fa-arrow-left text-[12px] absolute sm:top-[50%] sm:left-[50%] sm:-translate-x-[50%] sm:-translate-y-[50%] top-[50%] left-[6%] -translate-y-[50%]"></i>
+            </a>
+            <div id="moduleName" class="text-white text-center mb-0">Talk With AI</div>
+        </div>
+        <div class="rounded-lg p-6 max-w-md w-full mt-20">
+            <h1 class="text-center mb-4 text-2xl font-semibold text-gray-800">
+                Press following button
+                to speak with AI
+            </h1>
+            <button
+                class="w-full bg-cyan-600 text-white py-3 rounded-lg mb-4 font-medium hover:bg-cyan-600 transition-colors duration-300 flex items-center justify-center">
+                <i class="fas fa-microchip mr-2"></i>
+                Click Here to
+                Speak with AI
+            </button>
+        </div>
+    </main>
+
+    <footer class="text-white body-font">
+        <div class="bg-[#13181d]">
+            <div class="container mx-auto py-4 px-5 flex items-center justify-center flex-wrap flex-col sm:flex-row">
+                <p class="text-lg text-center sm:text-left">© 2024 Aleena Rais</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

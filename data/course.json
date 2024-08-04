@@ -1,0 +1,30 @@
+{
+  "yourCourses": [
+    {
+      "title": "Speak English with Aleena",
+      "image": "https://dummyimage.com/720x400",
+      "duration": "17 Hours +",
+      "modules": "15 Modules",
+      "language": "English",
+      "link": "../pages/speak-english.html"
+    }
+  ],
+  "upcomingCourses": [
+    {
+      "title": "Speak English with Aleena (Hindi)",
+      "status": "Coming Soon",
+      "image": "path_to_image.jpg",
+      "category": "LANGUAGE",
+      "duration": "15+ HOURS",
+      "description": "Learn to speak English fluently with Aleena, now in Hindi!"
+    },
+    {
+      "title": "Instagram Masterclass",
+      "status": "Coming Soon",
+      "image": "path_to_image.jpg",
+      "category": "SOCIAL MEDIA",
+      "duration": "10+ HOURS",
+      "description": "Master Instagram marketing and grow your following!"
+    }
+  ]
+}

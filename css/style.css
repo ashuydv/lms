@@ -1,0 +1,17 @@
+.drawer-backdrop {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.drawer-backdrop.show {
+  opacity: 1;
+}
+
+.drawer-content {
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%);
+}
+
+.drawer-content.show {
+  transform: translateX(0);
+}

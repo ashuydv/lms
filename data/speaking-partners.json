@@ -1,0 +1,16 @@
+{
+  "videos": [
+    {
+      "title": "Introducing Yourself",
+      "duration": "5:30",
+      "videoUrl": "https://www.youtube.com/embed/VIDEO_ID_1",
+      "description": "Learn how to introduce yourself confidently in English."
+    },
+    {
+      "title": "Asking for Directions",
+      "duration": "6:15",
+      "videoUrl": "https://www.youtube.com/embed/VIDEO_ID_2",
+      "description": "Practice asking for and giving directions in various scenarios."
+    }
+  ]
+}

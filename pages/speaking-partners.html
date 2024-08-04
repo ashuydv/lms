@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>English Speaking Partners</title>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="figtree-400 bg-[#ede9e6]">
+    <header
+        class="figtree-400 text-gray-400 bg-[#13181d] sm:fixed fixed sm:top-0 sm:w-full sm:h-28 z-20 bottom-0 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 py-0 flex-col md:flex-row items-center">
+            <nav class="flex text-center flex-wrap items-center justify-center w-full pt-3 text-base gap-3">
+                <a
+                    class="flex items-center justify-center flex-col gap-1 border-b-4 border-transparent hover:border-white w-[160px] p-4 hover:text-white figtree-400 transition-colors duration-300">
+                    <i class="fa-solid fa-house text-2xl"></i>
+                    <span class="my-1">Home</span>
+                </a>
+                <a
+                    class="flex items-center justify-center flex-col gap-1 border-b-4 border-transparent hover:border-white w-[160px] p-4 hover:text-white figtree-400 transition-colors duration-300">
+                    <i class="fa-solid fa-briefcase text-2xl"></i>
+                    <span class="my-1">Purchases</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+    <div id="header">
+        <nav class="flex text-center flex-wrap items-center justify-center w-full pt-3 text-base gap-3">
+            <a href="index.html"
+                class="flex items-center justify-center flex-col gap-1 border-b-4 border-transparent hover:border-white w-[160px] p-4 hover:text-white figtree-400 transition-colors duration-300">
+                <i class="fa-solid fa-house text-2xl"></i>
+                <span class="my-1">Home</span>
+            </a>
+            <a
+                class="flex items-center justify-center flex-col gap-1 border-b-4 border-transparent hover:border-white w-[160px] p-4 hover:text-white figtree-400 transition-colors duration-300">
+                <i class="fa-solid fa-briefcase text-2xl"></i>
+                <span class="my-1">Purchases</span>
+            </a>
+        </nav>
+    </div>
+    <main id="content" class="min-h-screen flex flex-col justify-center items-center pb-24">
+        <div>
+            <a href="./index.html" id="back-button"
+                class="w-[100%] min-h-[72px] m-0 sm:w-[60px] sm:min-h-[60px] sm:block fixed w-full top-[-5px] left-[0px] bg-[#13181d] sm:rounded-full px-5 py-6 sm:p-0">
+                <i
+                    class="fa-solid text-white fa-arrow-left text-[12px] absolute sm:top-[50%] sm:left-[50%] sm:-translate-x-[50%] sm:-translate-y-[50%] top-[50%] left-[6%] -translate-y-[50%]"></i>
+            </a>
+            <div id="moduleName" class="text-white text-center">English Speaking Partners</div>
+        </div>
+
+        <div class="rounded-lg p-6 pt-44 pb-12 max-w-md w-full">
+            <h1 class="text-center mb-4 text-2xl font-semibold text-gray-800">
+                Send a message to your Speaking Partner
+            </h1>
+            <button id="whatsappButton"
+                class="w-full bg-green-500 text-white py-3 rounded-lg mb-4 font-medium hover:bg-green-600 transition-colors duration-300 flex items-center justify-center">
+                <i class="fab fa-whatsapp mr-2"></i>
+                Send Hi! on WhatsApp
+            </button>
+
+            <button
+                class="w-full bg-blue-500 text-white py-3 rounded-lg mb-6 font-medium hover:bg-blue-600 transition-colors duration-300 flex items-center justify-center">
+                <i class="fas fa-user-friends mr-2"></i>
+                Change Partner
+            </button>
+
+            <p class="text-center text-sm text-gray-600 mb-4">
+                We may recommend your number to other co-learners. Click the button above to change this setting.
+            </p>
+
+            <button
+                class="w-full bg-gray-500 text-white py-3 rounded-lg mb-6 font-medium hover:bg-gray-600 transition-colors duration-300 flex items-center justify-center">
+                <i class="fas fa-eye-slash mr-2"></i>
+                Hide my Number
+            </button>
+
+            <div class="bg-gray-100 p-4 rounded-lg text-sm text-gray-700">
+                <ul class="list-disc pl-5 space-y-2">
+                    <li>Please be respectful to speaking partners. They are your co-learners.</li>
+                    <li>Send them a message on WhatsApp and set a schedule for speaking practice.</li>
+                    <li>You will be able to connect to a new speaking partner once every 24 hours.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-white body-font">
+        <div class="bg-[#13181d]">
+            <div class="container mx-auto py-4 px-5 flex items-center justify-center flex-wrap flex-col sm:flex-row">
+                <p class="text-lg text-center sm:text-left">© 2024 Aleena Rais</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="js/main.js"></script>
+
+    <script>
+        const whatsappButton = document.getElementById('whatsappButton');
+
+        if (whatsappButton) {
+            whatsappButton.addEventListener('click', function () {
+                const phoneNumber = '9136345128';
+                const message = 'Hi!';
+
+                const encodedMessage = encodeURIComponent(message);
+
+                const whatsappUrl = `https://api.whatsapp.com/send/?phone=${phone}&text=${message}`;
+                window.open(whatsappUrl, '_blank');
+            });
+        }
+    </script>
+</body>
+
+</html>
