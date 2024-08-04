@@ -58,7 +58,7 @@ function renderModules(modules) {
                             <div class="flex items-start flex-col w-full">
                                 <div>
                                     <span class="mr-2 text-sm font-semibold text-gray-500">${lesson.sr_no}.</span>
-                                    <i class="fa-solid fa-play mr-2 text-sm text-blue-500"></i>
+                                    <i class="fa-solid fa-play mr-2 text-sm text-black"></i>
                                     <span class="flex-grow font-semibold">${lesson.title}</span>
                                 </div>
                                 <span class="text-xs text-gray-500 pl-5 font-medium">video &bull; ${lesson.duration || '00m 00s'}</span>
@@ -139,7 +139,7 @@ function loadLesson(moduleIndex, lessonIndex) {
                 </video>
             </div>
             <div class="flex border-b mb-4">
-                <button class="py-2 px-4 border-b-2 border-blue-500 text-blue-500 font-medium" id="mobile-lesson-info-tab">Lesson Info</button>
+                <button class="py-2 px-4 border-b-2 border-blue-500 text-black font-medium" id="mobile-lesson-info-tab">Lesson Info</button>
                 <button class="py-2 px-4 font-medium" id="mobile-resources-tab">Resources</button>
             </div>
             <div id="mobile-lesson-info" class="mt-4">${lesson.info}</div>
@@ -178,20 +178,22 @@ function loadLesson(moduleIndex, lessonIndex) {
     });
 
     // Show lesson view on mobile
-    document.getElementById('modules-list').classList.add('hidden');
-    document.getElementById('mobile-lesson-view').classList.remove('hidden');
+    if (window.innerWidth < 768) {
+        document.getElementById('modules-list').classList.remove('hidden');
+        document.getElementById('mobile-lesson-view').classList.add('hidden');
+    }
 
     // Add event listeners for mobile tabs
     document.getElementById('mobile-lesson-info-tab').addEventListener('click', function () {
-        this.classList.add('border-b-2', 'border-blue-500', 'text-blue-500');
-        document.getElementById('mobile-resources-tab').classList.remove('border-b-2', 'border-blue-500', 'text-blue-500');
+        this.classList.add('border-b-2', 'border-blue-500', 'text-black');
+        document.getElementById('mobile-resources-tab').classList.remove('border-b-2', 'border-blue-500', 'text-black');
         document.getElementById('mobile-lesson-info').classList.remove('hidden');
         document.getElementById('mobile-lesson-resources').classList.add('hidden');
     });
 
     document.getElementById('mobile-resources-tab').addEventListener('click', function () {
-        this.classList.add('border-b-2', 'border-blue-500', 'text-blue-500');
-        document.getElementById('mobile-lesson-info-tab').classList.remove('border-b-2', 'border-blue-500', 'text-blue-500');
+        this.classList.add('border-b-2', 'border-blue-500', 'text-black');
+        document.getElementById('mobile-lesson-info-tab').classList.remove('border-b-2', 'border-blue-500', 'text-black');
         document.getElementById('mobile-lesson-resources').classList.remove('hidden');
         document.getElementById('mobile-lesson-info').classList.add('hidden');
     });
@@ -202,15 +204,15 @@ function loadLesson(moduleIndex, lessonIndex) {
 
 // Tab switching
 document.getElementById('lesson-info-tab').addEventListener('click', function () {
-    this.classList.add('border-b-2', 'border-blue-500', 'text-blue-500');
-    document.getElementById('resources-tab').classList.remove('border-b-2', 'border-blue-500', 'text-blue-500');
+    this.classList.add('border-b-2', 'border-blue-500', 'text-black');
+    document.getElementById('resources-tab').classList.remove('border-b-2', 'border-blue-500', 'text-black');
     document.getElementById('lesson-info').classList.remove('hidden');
     document.getElementById('lesson-resources').classList.add('hidden');
 });
 
 document.getElementById('resources-tab').addEventListener('click', function () {
-    this.classList.add('border-b-2', 'border-blue-500', 'text-blue-500');
-    document.getElementById('lesson-info-tab').classList.remove('border-b-2', 'border-blue-500', 'text-blue-500');
+    this.classList.add('border-b-2', 'border-blue-500', 'text-black');
+    document.getElementById('lesson-info-tab').classList.remove('border-b-2', 'border-blue-500', 'text-black');
     document.getElementById('lesson-resources').classList.remove('hidden');
     document.getElementById('lesson-info').classList.add('hidden');
 });
