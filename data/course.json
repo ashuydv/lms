@@ -13,7 +13,7 @@
     {
       "title": "Speak English with Aleena (Hindi)",
       "status": "Coming Soon",
-      "image": "path_to_image.jpg",
+      "image": "https://dummyimage.com/720x400",
       "category": "LANGUAGE",
       "duration": "15+ HOURS",
       "description": "Learn to speak English fluently with Aleena, now in Hindi!"
@@ -21,7 +21,7 @@
     {
       "title": "Instagram Masterclass",
       "status": "Coming Soon",
-      "image": "path_to_image.jpg",
+      "image": "https://dummyimage.com/720x400",
       "category": "SOCIAL MEDIA",
       "duration": "10+ HOURS",
       "description": "Master Instagram marketing and grow your following!"
