@@ -8,7 +8,7 @@
           "sr_no": 1,
           "title": "Basic greetings",
           "info": "Learn common English greetings and introductions.",
-          "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "video": "../data/video1.mp4",
           "resources": [
             {
               "type": "pdf",
@@ -21,7 +21,7 @@
           "sr_no": 2,
           "title": "Alphabet and numbers",
           "info": "Master the English alphabet and numbers from 1 to 100.",
-          "video": "https://www.youtube.com/watch?v=J---aiyznGQ",
+          "video": "../data/video2.mp4",
           "resources": [
             {
               "type": "pdf",
@@ -34,7 +34,7 @@
           "sr_no": 3,
           "title": "Simple phrases",
           "info": "Learn essential phrases for everyday communication.",
-          "video": "https://www.youtube.com/watch?v=KMU0tzLwhbE",
+          "video": "../data/video2.mp4",
           "resources": [
             {
               "type": "pdf",
@@ -53,7 +53,7 @@
           "sr_no": 1,
           "title": "Formal greetings",
           "info": "Learn how to greet people in formal situations.",
-          "video": "https://www.youtube.com/watch?v=8ZcmTl_1ER8",
+          "video": "../data/video2.mp4",
           "resources": [
             {
               "type": "pdf",
@@ -66,7 +66,7 @@
           "sr_no": 2,
           "title": "Introducing yourself",
           "info": "Practice introducing yourself in various contexts.",
-          "video": "https://www.youtube.com/watch?v=W8_Kfjo3VjU",
+          "video": "../data/video2.mp4",
           "resources": [
             {
               "type": "pdf",
@@ -79,7 +79,7 @@
           "sr_no": 3,
           "title": "Describing your appearance",
           "info": "Learn vocabulary and phrases to describe physical appearance.",
-          "video": "https://www.youtube.com/watch?v=fZi4JxbTwPo",
+          "video": "../data/video2.mp4",
           "resources": [
             {
               "type": "pdf",
@@ -98,7 +98,7 @@
           "sr_no": 1,
           "title": "Wh- questions",
           "info": "Learn how to form and use Who, What, Where, When, Why, and How questions.",
-          "video": "https://www.youtube.com/watch?v=9bZkp7q19f0",
+          "video": "../data/video2.mp4",
           "resources": [
             {
               "type": "pdf",
@@ -111,7 +111,7 @@
           "sr_no": 2,
           "title": "Yes/No questions",
           "info": "Understand and practice forming yes/no questions in English.",
-          "video": "https://www.youtube.com/watch?v=kJQP7kiw5Fk",
+          "video": "../data/video2.mp4",
           "resources": [
             {
               "type": "pdf",
@@ -124,7 +124,7 @@
           "sr_no": 3,
           "title": "Tag questions",
           "info": "Learn how to use tag questions for confirmation and conversation.",
-          "video": "https://www.youtube.com/watch?v=JGwWNGJdvx8",
+          "video": "../data/video2.mp4",
           "resources": [
             {
               "type": "pdf",
@@ -137,7 +137,7 @@
           "sr_no": 4,
           "title": "Responding to questions",
           "info": "Practice giving appropriate and detailed responses to various question types.",
-          "video": "https://www.youtube.com/watch?v=OPf0YbXqDm0",
+          "video": "../data/video2.mp4",
           "resources": [
             {
               "type": "pdf",
@@ -150,7 +150,7 @@
           "sr_no": 5,
           "title": "Hypothetical Questions & Negative Questions",
           "info": "Explore more complex question forms and how to respond to them.",
-          "video": "https://www.youtube.com/watch?v=CevxZvSJLk8",
+          "video": "../data/video2.mp4",
           "resources": [
             {
               "type": "pdf",

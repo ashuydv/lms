@@ -119,11 +119,17 @@ function loadLesson(moduleIndex, lessonIndex) {
     document.getElementById('lesson-title').style.marginBottom = "20px";
     document.getElementById('lesson-content').innerHTML = `
         <div class="rounded-lg my-4">
-            <video id="video-player" class="w-full h-full border-2 border-black rounded-2xl" autoplay="" loop="" muted="">
-                <source src='${lesson.video}' type="video/mp4"/>
-            </video>
+            <div class="video-container relative overflow-hidden">
+                <video id="video-player" class="w-full h-full border-2 border-black rounded-2xl overflow-hidden">
+                    <source src='${lesson.video}' type="video/mp4"/>
+                </video>
+            </div>
         </div>
     `;
+    const desktopVideoPlayer = document.getElementById('video-player');
+    const desktopControls = createCustomVideoControls(desktopVideoPlayer);
+    desktopVideoPlayer.parentNode.appendChild(desktopControls);
+
     document.getElementById('lesson-info').textContent = lesson.info;
 
     // Update mobile view
@@ -132,9 +138,11 @@ function loadLesson(moduleIndex, lessonIndex) {
         <div class="bg-white rounded-lg shadow p-6 mb-6">
             <h2 class="text-2xl font-bold mb-4">${lesson.title}</h2>
             <div class="rounded-lg my-4">
-                <video id="mobile-video-player" class="w-full h-full border-2 border-black rounded-2xl" controls>
-                    <source src='${lesson.video}' type="video/mp4"/>
-                </video>
+                <div class="video-container relative overflow-hidden">
+                    <video id="mobile-video-player" class="w-full h-full border-2 border-black overflow-hidden rounded-2xl">
+                        <source src='${lesson.video}' type="video/mp4"/>
+                    </video>
+                </div>
             </div>
             <div class="flex border-b mb-4">
                 <button class="py-2 px-4 border-b-2 border-blue-500 text-black font-medium" id="mobile-lesson-info-tab">Lesson Info</button>
@@ -148,6 +156,9 @@ function loadLesson(moduleIndex, lessonIndex) {
             <button id="mobile-next-lesson" class="bg-blue-500 text-white px-4 py-2 rounded">Next</button>
         </div>
     `;
+    const mobileVideoPlayer = document.getElementById('mobile-video-player');
+    const mobileControls = createCustomVideoControls(mobileVideoPlayer);
+    mobileVideoPlayer.parentNode.appendChild(mobileControls);
 
     const resourcesList = document.getElementById('lesson-resources');
     const mobileResourcesList = document.getElementById('mobile-lesson-resources');
@@ -272,3 +283,54 @@ document.getElementById('back-button').addEventListener('click', function (e) {
         window.location.href = '../index.html';
     }
 });
+
+function createCustomVideoControls(videoElement) {
+    const controlsContainer = document.createElement('div');
+    controlsContainer.className = 'custom-video-controls flex items-center justify-between bg-gray-800 rounded-b-2xl bg-opacity-10 text-white px-8 py-4 backdrop-filter backdrop-blur-xl absolute w-full overflow-hidden bottom-0';
+
+    const playPauseBtn = document.createElement('button');
+    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+    playPauseBtn.className = 'play-pause-btn';
+
+    const progressBar = document.createElement('input');
+    progressBar.type = 'range';
+    progressBar.min = 0;
+    progressBar.max = 100;
+    progressBar.value = 0;
+    progressBar.className = 'progress-bar transition w-full mx-4';
+
+    const timeDisplay = document.createElement('span');
+    timeDisplay.className = 'time-display w-24';
+    timeDisplay.textContent = '0:00 / 0:00';
+
+    controlsContainer.appendChild(playPauseBtn);
+    controlsContainer.appendChild(progressBar);
+    controlsContainer.appendChild(timeDisplay);
+
+    playPauseBtn.addEventListener('click', () => {
+        if (videoElement.paused) {
+            videoElement.play();
+            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        } else {
+            videoElement.pause();
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        }
+    });
+
+    progressBar.addEventListener('input', () => {
+        const time = videoElement.duration * (progressBar.value / 100);
+        videoElement.currentTime = time;
+    });
+
+    videoElement.addEventListener('timeupdate', () => {
+        const value = (100 / videoElement.duration) * videoElement.currentTime;
+        progressBar.value = value;
+        const currentMinutes = Math.floor(videoElement.currentTime / 60);
+        const currentSeconds = Math.floor(videoElement.currentTime % 60);
+        const durationMinutes = Math.floor(videoElement.duration / 60);
+        const durationSeconds = Math.floor(videoElement.duration % 60);
+        timeDisplay.textContent = `${currentMinutes}:${currentSeconds.toString().padStart(2, '0')} / ${durationMinutes}:${durationSeconds.toString().padStart(2, '0')}`;
+    });
+
+    return controlsContainer;
+}
