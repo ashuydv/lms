@@ -1,3 +1,66 @@
+.figtree-100 {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.figtree-200 {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.figtree-300 {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.figtree-400 {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.figtree-500 {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.figtree-600 {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.figtree-700 {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.figtree-800 {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.figtree-900 {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+}
+
 .drawer-backdrop {
   transition: opacity 0.3s ease-in-out;
   opacity: 0;
@@ -47,4 +110,11 @@
   background: #4caf50;
   cursor: pointer;
   border-radius: 50%;
+}
+
+@media screen and (max-width: 1000px) {
+  .custom-video-controls {
+    padding: 1rem;
+    height: 40px;
+  }
 }

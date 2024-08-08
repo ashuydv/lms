@@ -9,21 +9,20 @@
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
 </head>
 
 <body class="figtree-400 bg-[#ede9e6]">
-    <header
-        class="figtree-400 text-gray-400 bg-[#13181d] sm:fixed fixed sm:top-0 sm:w-full sm:h-28 z-20 bottom-0 body-font">
-        <div class="container mx-auto flex flex-wrap p-5 py-0 flex-col md:flex-row items-center">
+    <header class="figtree-400 text-gray-400 sm:block hidden bg-[#13181d] body-font" id="main-nav">
+        <div class="container-fluid mx-auto flex flex-wrap p-5 py-0 flex-col md:flex-row items-center">
             <nav class="flex text-center flex-wrap items-center justify-center w-full pt-3 text-base gap-3">
-                <a href="./index.html"
+                <a href="../index.html"
                     class="flex items-center justify-center flex-col gap-1 border-b-4 border-transparent hover:border-white w-[160px] p-4 hover:text-white figtree-400 transition-colors duration-300">
                     <i class="fa-solid fa-house text-2xl"></i>
                     <span class="my-1">Home</span>
                 </a>
-                <a
-                    class="flex items-center justify-center flex-col gap-1 border-b-4 border-transparent hover:border-white w-[160px] p-4 hover:text-white figtree-400 transition-colors duration-300">
+                <a class="flex items-center justify-center flex-col gap-1 border-b-4 border-transparent hover:border-white
+                w-[160px] p-4 hover:text-white figtree-400 transition-colors duration-300">
                     <i class="fa-solid fa-briefcase text-2xl"></i>
                     <span class="my-1">Purchases</span>
                 </a>
@@ -31,17 +30,17 @@
         </div>
     </header>
     <main id="content" class="min-h-screen">
-        <div class="container-fluid mx-auto sm:py-36 sm:px-16 px-0 pb-20">
+        <div class="container-fluid mx-auto sm:py-36 sm:px-16 px-0 pt-36 pb-10">
             <div>
-                <a href="./index.html" id="back-button"
+                <a href="../index.html" id="back-button"
                     class="w-[100%] min-h-[72px] m-0 sm:w-[60px] sm:min-h-[60px] sm:block fixed w-full top-[-5px] left-[0px] bg-[#13181d] sm:rounded-full px-5 py-6 sm:p-0">
                     <i
                         class="fa-solid text-white fa-arrow-left text-[12px] absolute sm:top-[50%] sm:left-[50%] sm:-translate-x-[50%] sm:-translate-y-[50%] top-[50%] left-[6%] -translate-y-[50%]"></i>
                 </a>
-                <div id="moduleName" class="text-white text-center">Generate Certificate</div>
+                <div id="moduleName" class="text-black text-2xl font-bold text-center">Generate Certificate</div>
             </div>
 
-            <div class="p-6 py-10 max-w-md mx-auto">
+            <div class="p-6 py-10 pt-4 max-w-md mx-auto">
                 <p class="text-center mb-6 text-lg font-medium text-gray-800">
                     You can generate certificate after 2 months of enrollment in the course.
                 </p>
@@ -60,21 +59,21 @@
             </div>
         </div>
     </main>
-    <div id="header">
-        <nav class="flex text-center flex-wrap items-center justify-center w-full pt-3 text-base gap-3">
-            <a
-                class="flex items-center justify-center flex-col gap-1 border-b-4 border-transparent hover:border-white w-[160px] p-4 hover:text-white figtree-400 transition-colors duration-300">
-                <i class="fa-solid fa-house text-2xl"></i>
-                <span class="my-1">Home</span>
+
+    <footer class="bg-[#13181d] text-white p-4 md:hidden fixed bottom-0 w-full">
+        <div class="flex justify-evenly gap-4 items-center">
+            <a href="../index.html" class="flex flex-col items-center">
+                <i class="fa-solid fa-home text-2xl"></i>
+                <span class="text-xs mt-1">Home</span>
             </a>
-            <a
-                class="flex items-center justify-center flex-col gap-1 border-b-4 border-transparent hover:border-white w-[160px] p-4 hover:text-white figtree-400 transition-colors duration-300">
-                <i class="fa-solid fa-briefcase text-2xl"></i>
-                <span class="my-1">Purchases</span>
+            <a href="#" class="flex flex-col items-center">
+                <i class="fa-solid fa-shopping-bag text-2xl"></i>
+                <span class="text-xs mt-1">Purchases</span>
             </a>
-        </nav>
-    </div>
-    <footer class="text-white body-font">
+        </div>
+    </footer>
+
+    <footer class="text-white body-font sm:block hidden">
         <div class="bg-[#13181d]">
             <div class="container mx-auto py-4 px-5 flex items-center justify-center flex-wrap flex-col sm:flex-row">
                 <p class="text-lg text-center sm:text-left">© 2024 Aleena Rais</p>

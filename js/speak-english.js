@@ -41,7 +41,7 @@ function renderModules(modules) {
 
     modules.forEach((module, moduleIndex) => {
         const moduleElement = document.createElement('div');
-        moduleElement.className = 'bg-white rounded-lg border-2 border-black shadow mb-4';
+        moduleElement.className = 'bg-white transition rounded-lg border-2 border-black shadow mb-4';
         moduleElement.innerHTML = `
             <button class="accordion-header w-full rounded-xl text-left p-4 font-semibold flex justify-between items-start">
                 <div class="flex items-start w-full flex-col">
@@ -51,13 +51,13 @@ function renderModules(modules) {
                 </div>
                 <i class="fa-solid fa-chevron-down"></i>
             </button>
-            <div class="accordion-content">
-                <ul class="p-4 space-y-2">
+            <div class="accordion-content transition">
+                <ul class="sm:p-4 p-2 space-y-2">
                     ${module.lessons.map((lesson, lessonIndex) => `
-                        <li class="flex items-center cursor-pointer p-2 hover:bg-gray-100 rounded" data-module="${moduleIndex}" data-lesson="${lessonIndex}">
+                        <li class="flex items-center cursor-pointer sm:p-2 px-4 py-2 hover:bg-gray-100 rounded sm:border-0 border-2" data-module="${moduleIndex}" data-lesson="${lessonIndex}">
                             <div class="flex items-start flex-col w-full">
                                 <div>
-                                    <span class="mr-2 text-sm font-semibold text-gray-500">${lesson.sr_no}.</span>
+                                    <span class="mr-2 text-sm font-semibold text-gray-500 sm:block hidden">${lesson.sr_no}.</span>
                                     <i class="fa-solid fa-play mr-2 text-sm text-black"></i>
                                     <span class="flex-grow font-semibold">${lesson.title}</span>
                                 </div>
@@ -94,6 +94,118 @@ function renderModules(modules) {
     document.getElementById('modules-list').classList.remove('hidden');
     document.getElementById('mobile-lesson-view').classList.add('hidden');
 }
+
+// function loadLesson(moduleIndex, lessonIndex) {
+//     isInLessonView = true;
+//     currentModule = moduleIndex;
+//     currentLesson = lessonIndex;
+
+//     const modulesString = localStorage.getItem('modules');
+//     if (!modulesString) {
+//         console.error('No modules data found in localStorage');
+//         return;
+//     }
+
+//     const modules = JSON.parse(modulesString);
+//     if (!modules || !modules[moduleIndex] || !modules[moduleIndex].lessons[lessonIndex]) {
+//         console.error('Invalid module or lesson index');
+//         return;
+//     }
+
+//     const lesson = modules[moduleIndex].lessons[lessonIndex];
+
+//     // Update desktop view
+//     document.getElementById('lesson-title').textContent = lesson.title;
+//     document.getElementById('lesson-title').style.marginBottom = "20px";
+//     document.getElementById('lesson-content').innerHTML = `
+//         <div class="rounded-lg my-4">
+//             <div id="desktop-video-container"></div>
+//         </div>
+//     `;
+//     const desktopVideoPlayer = document.createElement('video');
+//     desktopVideoPlayer.className = 'w-full h-full border-2 border-black rounded-2xl overflow-hidden';
+//     desktopVideoPlayer.innerHTML = `<source src='${lesson.video}' type="video/mp4"/>`;
+//     const desktopVideoContainer = createCustomVideoControls(desktopVideoPlayer);
+//     document.getElementById('desktop-video-container').appendChild(desktopVideoContainer);
+
+//     document.getElementById('lesson-info').textContent = lesson.info;
+
+//     // Update mobile view
+//     const mobileLessonView = document.getElementById('mobile-lesson-view');
+//     mobileLessonView.innerHTML = `
+//         <div class="bg-white rounded-lg shadow p-6 mb-6">
+//             <h2 class="text-2xl font-bold mb-4">${lesson.title}</h2>
+//             <div class="rounded-lg my-4">
+//                 <div id="mobile-video-container"></div>
+//             </div>
+//             <div class="flex border-b mb-4">
+//                 <button class="py-2 px-4 border-b-2 border-blue-500 text-black font-medium" id="mobile-lesson-info-tab">Lesson Info</button>
+//                 <button class="py-2 px-4 font-medium" id="mobile-resources-tab">Resources</button>
+//             </div>
+//             <div id="mobile-lesson-info" class="mt-4">${lesson.info}</div>
+//             <div id="mobile-lesson-resources" class="mt-4 hidden"></div>
+//         </div>
+//         <div class="flex justify-between mt-4">
+//             <button id="mobile-prev-lesson" class="bg-black text-white px-4 py-2 rounded">Previous</button>
+//             <button id="mobile-next-lesson" class="bg-black text-white px-4 py-2 rounded">Next</button>
+//         </div>
+//     `;
+//     const mobileVideoPlayer = document.createElement('video');
+//     mobileVideoPlayer.className = 'w-full h-full border-2 border-black overflow-hidden rounded-2xl';
+//     mobileVideoPlayer.innerHTML = `<source src='${lesson.video}' type="video/mp4"/>`;
+//     const mobileVideoContainer = createCustomVideoControls(mobileVideoPlayer);
+//     document.getElementById('mobile-video-container').appendChild(mobileVideoContainer);
+
+//     const resourcesList = document.getElementById('lesson-resources');
+//     const mobileResourcesList = document.getElementById('mobile-lesson-resources');
+//     resourcesList.innerHTML = '';
+//     mobileResourcesList.innerHTML = '';
+
+//     lesson.resources.forEach(resource => {
+//         if (resource.type === 'pdf') {
+//             const pdfLink = document.createElement('a');
+//             pdfLink.href = resource.url;
+//             pdfLink.className = "pdf bg-black text-white rounded-md px-4 py-2 inline-block mb-2";
+//             pdfLink.innerHTML = `
+//                 <i class="fa-regular fa-file-pdf"></i>
+//                 ${resource.title}
+//             `;
+//             pdfLink.download = '';
+//             resourcesList.appendChild(pdfLink.cloneNode(true));
+//             mobileResourcesList.appendChild(pdfLink);
+//         } else if (resource.type === 'text') {
+//             const resourceItem = document.createElement('div');
+//             resourceItem.className = "mb-2";
+//             resourceItem.textContent = resource.title;
+//             resourcesList.appendChild(resourceItem.cloneNode(true));
+//             mobileResourcesList.appendChild(resourceItem);
+//         }
+//     });
+
+//     // Show lesson view on mobile
+//     if (window.innerWidth < 768) {
+//         document.getElementById('modules-list').classList.remove('hidden');
+//         document.getElementById('mobile-lesson-view').classList.add('hidden');
+//     }
+
+//     // Add event listeners for mobile tabs
+//     document.getElementById('mobile-lesson-info-tab').addEventListener('click', function () {
+//         this.classList.add('border-b-2', 'border-blue-500', 'text-black');
+//         document.getElementById('mobile-resources-tab').classList.remove('border-b-2', 'border-blue-500', 'text-black');
+//         document.getElementById('mobile-lesson-info').classList.remove('hidden');
+//         document.getElementById('mobile-lesson-resources').classList.add('hidden');
+//     });
+
+//     document.getElementById('mobile-resources-tab').addEventListener('click', function () {
+//         this.classList.add('border-b-2', 'border-blue-500', 'text-black');
+//         document.getElementById('mobile-lesson-info-tab').classList.remove('border-b-2', 'border-blue-500', 'text-black');
+//         document.getElementById('mobile-lesson-resources').classList.remove('hidden');
+//         document.getElementById('mobile-lesson-info').classList.add('hidden');
+//     });
+
+//     document.getElementById('mobile-prev-lesson').addEventListener('click', () => navigateLesson(-1));
+//     document.getElementById('mobile-next-lesson').addEventListener('click', () => navigateLesson(1));
+// }
 
 function loadLesson(moduleIndex, lessonIndex) {
     isInLessonView = true;
@@ -133,8 +245,8 @@ function loadLesson(moduleIndex, lessonIndex) {
     // Update mobile view
     const mobileLessonView = document.getElementById('mobile-lesson-view');
     mobileLessonView.innerHTML = `
-        <div class="bg-white rounded-lg shadow p-6 mb-6">
-            <h2 class="text-2xl font-bold mb-4">${lesson.title}</h2>
+        <div class="figtree-400 bg-white rounded-lg shadow p-6 mb-6">
+            <h2 class="sm:text-2xl text-xl font-bold mb-4">${lesson.title}</h2>
             <div class="rounded-lg my-4">
                 <div id="mobile-video-container"></div>
             </div>
@@ -146,8 +258,8 @@ function loadLesson(moduleIndex, lessonIndex) {
             <div id="mobile-lesson-resources" class="mt-4 hidden"></div>
         </div>
         <div class="flex justify-between mt-4">
-            <button id="mobile-prev-lesson" class="bg-blue-500 text-white px-4 py-2 rounded">Previous</button>
-            <button id="mobile-next-lesson" class="bg-blue-500 text-white px-4 py-2 rounded">Next</button>
+            <button id="mobile-prev-lesson" class="bg-black text-white px-4 py-2 rounded"><</button>
+            <button id="mobile-next-lesson" class="bg-black text-white px-4 py-2 rounded">></button>
         </div>
     `;
     const mobileVideoPlayer = document.createElement('video');
@@ -184,8 +296,8 @@ function loadLesson(moduleIndex, lessonIndex) {
 
     // Show lesson view on mobile
     if (window.innerWidth < 768) {
-        document.getElementById('modules-list').classList.remove('hidden');
-        document.getElementById('mobile-lesson-view').classList.add('hidden');
+        document.getElementById('modules-list').classList.add('hidden');
+        document.getElementById('mobile-lesson-view').classList.remove('hidden');
     }
 
     // Add event listeners for mobile tabs
@@ -289,7 +401,7 @@ function createCustomVideoControls(videoElement) {
     watermark.textContent = 'aleenarais';
 
     const controlsContainer = document.createElement('div');
-    controlsContainer.className = 'custom-video-controls flex items-center justify-between bg-gray-800 rounded-b-2xl bg-opacity-10 text-white px-8 py-4 backdrop-filter backdrop-blur-xl absolute w-full overflow-hidden bottom-0';
+    controlsContainer.className = 'custom-video-controls flex items-center justify-between bg-gray-800 rounded-b-2xl bg-opacity-10 text-white sm:px-8 sm:py-4 backdrop-filter backdrop-blur-xl absolute w-full overflow-hidden bottom-0';
 
     const playPauseBtn = document.createElement('button');
     playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
@@ -303,7 +415,7 @@ function createCustomVideoControls(videoElement) {
     progressBar.className = 'progress-bar transition w-full mx-4';
 
     const timeDisplay = document.createElement('span');
-    timeDisplay.className = 'time-display w-24';
+    timeDisplay.className = 'time-display sm:w-24 w-full text-center';
     timeDisplay.textContent = '0:00 / 0:00';
 
     // Add fullscreen button
@@ -475,3 +587,4 @@ function handleFullscreenChange() {
         setTimeout(unblurVideo, 500);
     }
 }
+

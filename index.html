@@ -17,7 +17,7 @@
         <div class="container-fluid mx-auto flex flex-wrap p-5 py-0 flex-col md:flex-row items-center">
             <nav class="flex text-center flex-wrap items-center justify-center w-full pt-3 text-base gap-3">
                 <a href="index.html"
-                    class="flex items-center justify-center flex-col gap-1 border-b-4 border-transparent hover:border-white w-[160px] p-4 hover:text-white figtree-400 transition-colors duration-300">
+                    class="flex items-center justify-center text-white active flex-col gap-1 border-b-4 border-transparent hover:border-white w-[160px] p-4 hover:text-white figtree-400 transition-colors duration-300">
                     <i class="fa-solid fa-house text-2xl"></i>
                     <span class="my-1">Home</span>
                 </a>
@@ -90,8 +90,8 @@
                         <h2 class="text-white sm:text-2xl text-xl font-medium mb-4">
                             English Speaking Partners
                         </h2>
-                        <a href="./speaking-partners.html"
-                            class="text-[#13181d] px-4 py-2 text-base sm:text-lg font-medium rounded-lg inline-flex items-center bg-[#f4f5ed] w-[150px]">   
+                        <a href="./pages/speaking-partners.html"
+                            class="text-[#13181d] px-4 py-2 text-base sm:text-lg font-medium rounded-lg inline-flex items-center bg-[#f4f5ed] w-[150px]">
                             Get Access
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
@@ -103,8 +103,8 @@
                         <h2 class="text-white sm:text-2xl text-xl font-medium mb-4">
                             Talk with AI
                         </h2>
-                        <a href="./talk-with-ai.html"
-                            class="text-[#13181d] px-4 py-2 text-base sm:text-lg font-medium rounded-lg inline-flex items-center bg-[#f4f5ed] w-[150px]">   
+                        <a href="./pages/talk-with-ai.html"
+                            class="text-[#13181d] px-4 py-2 text-base sm:text-lg font-medium rounded-lg inline-flex items-center bg-[#f4f5ed] w-[150px]">
                             Get Access
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
@@ -117,7 +117,7 @@
                             300+ Practice Questions
                         </h2>
                         <a
-                            class="text-[#13181d] px-4 py-2 text-base sm:text-lg font-medium rounded-lg inline-flex items-center bg-[#f4f5ed] w-[150px]">   
+                            class="text-[#13181d] px-4 py-2 text-base sm:text-lg font-medium rounded-lg inline-flex items-center bg-[#f4f5ed] w-[150px]">
                             Get Access
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
@@ -130,7 +130,7 @@
                             Complete Lesson Notes
                         </h2>
                         <a
-                            class="text-[#13181d] px-4 py-2 text-base sm:text-lg font-medium rounded-lg inline-flex items-center bg-[#f4f5ed] w-[150px]">   
+                            class="text-[#13181d] px-4 py-2 text-base sm:text-lg font-medium rounded-lg inline-flex items-center bg-[#f4f5ed] w-[150px]">
                             Get Access
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
@@ -142,8 +142,8 @@
                         <h2 class="text-white sm:text-2xl text-xl font-medium mb-4">
                             Generate Certificate
                         </h2>
-                        <a href="./generate-certifcate.html"
-                            class="text-[#13181d] px-4 py-2 text-base sm:text-lg font-medium rounded-lg inline-flex items-center bg-[#f4f5ed] w-[150px]">   
+                        <a href="./pages/generate-certificate.html"
+                            class="text-[#13181d] px-4 py-2 text-base sm:text-lg font-medium rounded-lg inline-flex items-center bg-[#f4f5ed] w-[150px]">
                             Get Access
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
@@ -155,7 +155,7 @@
             </div>
         </section>
         <section id="courses" class="text-gray-600 body-font">
-            <div class="container sm:px-8 px-5 pt-0 pb-14 sm:pt-24 sm:pb-20 mx-auto">
+            <div class="container sm:px-8 px-5 pt-0 pb-36 sm:pt-24 sm:pb-20 mx-auto">
                 <div class="flex flex-wrap w-full mb-2 sm:mb-10">
                     <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
                         <h1 class="sm:text-4xl text-3xl font-bold title-font mb-2 text-gray-900">
@@ -170,20 +170,20 @@
             </div>
         </section>
     </main>
-    <div id="header" class="sm:hidden block">
-        <nav class="flex text-center flex-wrap items-center justify-center w-full pt-3 text-base bg-[#13181d] gap-3">
-            <a
-                class="flex items-center justify-center text-white flex-col gap-1 border-b-4 border-transparent hover:border-white w-[160px] p-4 hover:text-white figtree-400 transition-colors duration-300">
-                <i class="fa-solid fa-house text-2xl"></i>
-                <span class="my-1">Home</span>
+
+    <footer class="bg-[#13181d] text-white p-4 md:hidden fixed bottom-0 w-full">
+        <div class="flex justify-evenly gap-4 items-center">
+            <a href="../index.html" class="flex flex-col items-center">
+                <i class="fa-solid fa-home text-2xl"></i>
+                <span class="text-xs mt-1">Home</span>
             </a>
-            <a
-                class="flex items-center justify-center text-white flex-col gap-1 border-b-4 border-transparent hover:border-white w-[160px] p-4 hover:text-white figtree-400 transition-colors duration-300">
-                <i class="fa-solid fa-briefcase text-2xl"></i>
-                <span class="my-1">Purchases</span>
+            <a href="#" class="flex flex-col items-center">
+                <i class="fa-solid fa-shopping-bag text-2xl"></i>
+                <span class="text-xs mt-1">Purchases</span>
             </a>
-        </nav>
-    </div>
+        </div>
+    </footer>
+
     <footer class="text-white body-font sm:block hidden">
         <div class="bg-[#13181d]">
             <div class="container mx-auto py-4 px-5 flex items-center justify-center flex-wrap flex-col sm:flex-row">
