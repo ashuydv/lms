@@ -237,3 +237,9 @@ function closeDrawer() {
         drawer.classList.add('hidden');
     }, 300);
 }
+
+// Prevent right-click
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    alert('This feature is not allowed.');
+});

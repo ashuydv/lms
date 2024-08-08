@@ -119,16 +119,14 @@ function loadLesson(moduleIndex, lessonIndex) {
     document.getElementById('lesson-title').style.marginBottom = "20px";
     document.getElementById('lesson-content').innerHTML = `
         <div class="rounded-lg my-4">
-            <div class="video-container relative overflow-hidden">
-                <video id="video-player" class="w-full h-full border-2 border-black rounded-2xl overflow-hidden">
-                    <source src='${lesson.video}' type="video/mp4"/>
-                </video>
-            </div>
+            <div id="desktop-video-container"></div>
         </div>
     `;
-    const desktopVideoPlayer = document.getElementById('video-player');
-    const desktopControls = createCustomVideoControls(desktopVideoPlayer);
-    desktopVideoPlayer.parentNode.appendChild(desktopControls);
+    const desktopVideoPlayer = document.createElement('video');
+    desktopVideoPlayer.className = 'w-full h-full border-2 border-black rounded-2xl overflow-hidden';
+    desktopVideoPlayer.innerHTML = `<source src='${lesson.video}' type="video/mp4"/>`;
+    const desktopVideoContainer = createCustomVideoControls(desktopVideoPlayer);
+    document.getElementById('desktop-video-container').appendChild(desktopVideoContainer);
 
     document.getElementById('lesson-info').textContent = lesson.info;
 
@@ -138,11 +136,7 @@ function loadLesson(moduleIndex, lessonIndex) {
         <div class="bg-white rounded-lg shadow p-6 mb-6">
             <h2 class="text-2xl font-bold mb-4">${lesson.title}</h2>
             <div class="rounded-lg my-4">
-                <div class="video-container relative overflow-hidden">
-                    <video id="mobile-video-player" class="w-full h-full border-2 border-black overflow-hidden rounded-2xl">
-                        <source src='${lesson.video}' type="video/mp4"/>
-                    </video>
-                </div>
+                <div id="mobile-video-container"></div>
             </div>
             <div class="flex border-b mb-4">
                 <button class="py-2 px-4 border-b-2 border-blue-500 text-black font-medium" id="mobile-lesson-info-tab">Lesson Info</button>
@@ -156,9 +150,11 @@ function loadLesson(moduleIndex, lessonIndex) {
             <button id="mobile-next-lesson" class="bg-blue-500 text-white px-4 py-2 rounded">Next</button>
         </div>
     `;
-    const mobileVideoPlayer = document.getElementById('mobile-video-player');
-    const mobileControls = createCustomVideoControls(mobileVideoPlayer);
-    mobileVideoPlayer.parentNode.appendChild(mobileControls);
+    const mobileVideoPlayer = document.createElement('video');
+    mobileVideoPlayer.className = 'w-full h-full border-2 border-black overflow-hidden rounded-2xl';
+    mobileVideoPlayer.innerHTML = `<source src='${lesson.video}' type="video/mp4"/>`;
+    const mobileVideoContainer = createCustomVideoControls(mobileVideoPlayer);
+    document.getElementById('mobile-video-container').appendChild(mobileVideoContainer);
 
     const resourcesList = document.getElementById('lesson-resources');
     const mobileResourcesList = document.getElementById('mobile-lesson-resources');
@@ -285,6 +281,13 @@ document.getElementById('back-button').addEventListener('click', function (e) {
 });
 
 function createCustomVideoControls(videoElement) {
+    const videoContainer = document.createElement('div');
+    videoContainer.className = 'video-container relative overflow-hidden';
+
+    const watermark = document.createElement('div');
+    watermark.className = 'watermark absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl opacity-50 pointer-events-none select-none';
+    watermark.textContent = 'aleenarais';
+
     const controlsContainer = document.createElement('div');
     controlsContainer.className = 'custom-video-controls flex items-center justify-between bg-gray-800 rounded-b-2xl bg-opacity-10 text-white px-8 py-4 backdrop-filter backdrop-blur-xl absolute w-full overflow-hidden bottom-0';
 
@@ -303,9 +306,19 @@ function createCustomVideoControls(videoElement) {
     timeDisplay.className = 'time-display w-24';
     timeDisplay.textContent = '0:00 / 0:00';
 
+    // Add fullscreen button
+    const fullscreenBtn = document.createElement('button');
+    fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+    fullscreenBtn.className = 'fullscreen-btn ml-4';
+
     controlsContainer.appendChild(playPauseBtn);
     controlsContainer.appendChild(progressBar);
     controlsContainer.appendChild(timeDisplay);
+    controlsContainer.appendChild(fullscreenBtn);
+
+    videoContainer.appendChild(videoElement);
+    videoContainer.appendChild(watermark);
+    videoContainer.appendChild(controlsContainer);
 
     playPauseBtn.addEventListener('click', () => {
         if (videoElement.paused) {
@@ -332,5 +345,133 @@ function createCustomVideoControls(videoElement) {
         timeDisplay.textContent = `${currentMinutes}:${currentSeconds.toString().padStart(2, '0')} / ${durationMinutes}:${durationSeconds.toString().padStart(2, '0')}`;
     });
 
-    return controlsContainer;
+    // Add event listener for video end
+    videoElement.addEventListener('ended', () => {
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+    });
+
+    // Fullscreen functionality
+    fullscreenBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+            if (videoContainer.requestFullscreen) {
+                videoContainer.requestFullscreen();
+            } else if (videoContainer.mozRequestFullScreen) { // Firefox
+                videoContainer.mozRequestFullScreen();
+            } else if (videoContainer.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                videoContainer.webkitRequestFullscreen();
+            } else if (videoContainer.msRequestFullscreen) { // IE/Edge
+                videoContainer.msRequestFullscreen();
+            }
+            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) { // Firefox
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { // IE/Edge
+                document.msExitFullscreen();
+            }
+            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+        }
+    });
+
+    document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+        }
+    });
+
+    // Prevent right-click
+    videoContainer.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        alert('not allowed.');
+    });
+
+    // Disable print screen key
+    document.addEventListener('keyup', (e) => {
+        if (e.key === 'PrintScreen') {
+            navigator.clipboard.writeText('');
+            alert('Screenshots are not allowed!');
+        }
+    });
+
+    // Blur video when window loses focus
+    window.addEventListener('blur', () => {
+        videoElement.style.filter = 'blur(20px)';
+    });
+
+    window.addEventListener('focus', () => {
+        videoElement.style.filter = 'none';
+    });
+
+    // Detect fullscreen change
+    document.addEventListener('fullscreenchange', () => {
+        if (document.fullscreenElement) {
+            videoElement.style.filter = 'blur(20px)';
+            setTimeout(() => { videoElement.style.filter = 'none'; }, 500);
+        }
+    });
+
+    return videoContainer;
+}
+
+// Add any additional functions or event listeners here if needed
+
+// Example of how you might add a function to update the watermark text
+function updateWatermark(text) {
+    const watermarks = document.querySelectorAll('.watermark');
+    watermarks.forEach(watermark => {
+        watermark.textContent = text;
+    });
+}
+
+// You can call this function to update the watermark text
+// updateWatermark('New Watermark Text');
+
+// Example of how you might add a function to toggle video protection
+let protectionEnabled = true;
+
+function toggleVideoProtection() {
+    protectionEnabled = !protectionEnabled;
+    const videoContainers = document.querySelectorAll('.video-container');
+    videoContainers.forEach(container => {
+        if (protectionEnabled) {
+            container.addEventListener('contextmenu', (e) => e.preventDefault());
+        } else {
+            container.removeEventListener('contextmenu', (e) => e.preventDefault());
+        }
+    });
+
+    if (protectionEnabled) {
+        window.addEventListener('blur', blurVideo);
+        window.addEventListener('focus', unblurVideo);
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+    } else {
+        window.removeEventListener('blur', blurVideo);
+        window.removeEventListener('focus', unblurVideo);
+        document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    }
+}
+
+function blurVideo() {
+    const videos = document.querySelectorAll('video');
+    videos.forEach(video => {
+        video.style.filter = 'blur(20px)';
+    });
+}
+
+function unblurVideo() {
+    const videos = document.querySelectorAll('video');
+    videos.forEach(video => {
+        video.style.filter = 'none';
+    });
+}
+
+function handleFullscreenChange() {
+    if (document.fullscreenElement) {
+        blurVideo();
+        setTimeout(unblurVideo, 500);
+    }
 }
