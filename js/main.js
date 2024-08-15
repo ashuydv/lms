@@ -41,10 +41,10 @@ function renderYourCourses(courses) {
         const courseHTML = `
             <div class="xl:w-1/3 md:w-1/2 p-4">
                 <a href="${course.link}">
-                    <div class="bg-[#d9b25d] rounded-[20px] overflow-hidden">
-                        <img class="sm:h-72 rounded-[20px] w-full object-cover object-center"
+                    <div class="bg-[#d9b25d] rounded-[12px] overflow-hidden">
+                        <img class="sm:h-auto rounded-[12px] w-full object-cover object-center"
                             src="${course.image}" alt="${course.title}" />
-                        <div class="flex items-center justify-between sm:p-4 sm:px-8 py-2 px-4">
+                        <div class="flex items-center justify-between sm:py-3 sm:px-6 py-2 px-4">
                             <h2 class="text-lg text-gray-900 font-semibold mb-0">
                                 ${course.duration}
                             </h2>

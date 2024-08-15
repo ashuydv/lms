@@ -20,78 +20,171 @@
         .accordion-content.active {
             max-height: 1000px;
         }
+
+        iframe {
+            border-radius: 20px;
+        }
+
+        /* Improved scrollbar styling */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .layout-container {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .lesson-item {
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .video-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .layout-container {
+                flex-direction: row;
+            }
+
+            #modules-container {
+                padding-bottom: 6rem !important;
+            }
+        }
+
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            height: 10px;
+        }
+
+        .progress {
+            height: 10px;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .completed-lesson {
+            background-color: #e6f7ff;
+        }
+
+        .video-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        .mark-complete-btn {
+            min-width: 100px;
+            text-align: center;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
     </style>
 </head>
 
-<body class="figtree-400 bg-[#ede9e6]">
-    <header class="bg-[#13181d] text-white p-4 flex items-center justify-between">
-        <a href="../index.html" id="back-button" class="text-2xl">
+<body class="figtree-400 bg-[#ede9e6] flex flex-col min-h-screen">
+    <header
+        class="bg-[#13181d] w-full text-white p-4 sm:h-auto h-20 flex items-center justify-between fixed top-0 z-20">
+        <a href="../index.html" id="back-button" class="sm:hidden block text-2xl">
             <i class="fa-solid fa-arrow-left"></i>
         </a>
         <h1 class="text-xl font-bold w-full text-center">Speak English with Aleena</h1>
     </header>
+    <main class="figtree-400 container mx-auto px-4 sm:pt-44 sm:pb-12 py-24 flex-grow">
+        <div class="layout-container">
+            <div id="lesson-view" class="md:w-2/3 pr-4 sm:block hidden z-10 custom-scrollbar">
+                <div id="content-area" class="rounded-lg mb-6">
+                    <div class="flex items-center mb-[28px]">
+                        <a href="../index.html" id="back-button" class="sm:block mb-0 hidden text-2xl">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </a>
+                        <h2 id="lesson-title" class="text-3xl font-bold pl-4"></h2>
+                    </div>
+                    <div id="lesson-content" class="mb-6">
+                        <!-- Lesson content will be dynamically inserted here -->
+                    </div>
+                    <div class="flex border-b">
+                        <button class="py-2 px-4 border-b-2 border-black text-black font-medium"
+                            id="lesson-info-tab">Lesson Info</button>
+                        <button class="py-2 px-4 font-medium" id="resources-tab">Resources</button>
+                    </div>
+                    <div class="min-h-[180px]">
+                        <div id="lesson-info" class="mt-4"></div>
+                        <div id="lesson-resources" class="mt-4 hidden flex items-center gap-2"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="modules-list" class="md:w-1/3 w-full">
+                <div class="mb-4">
+                    <span class="text-md font-semibold">100 Lessons</span>
+                    <span class="text-md font-semibold ml-2">English</span>
+                </div>
+                <div id="modules-container" class="space-y-4 custom-scrollbar">
+                    <!-- Modules will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
 
-    <!-- <main class="container mx-auto px-4 py-6 flex flex-col md:flex-row">
-        <div id="lesson-view" class="md:w-2/3 pr-4 hidden md:block">
-            <div id="content-area" class="bg-white rounded-lg shadow p-6 mb-6">
-                <h2 id="lesson-title" class="text-3xl font-bold mb-4"></h2>
-                <div id="lesson-content" class="mb-6">
-                    Lesson content will be dynamically inserted here
-                </div>
-                <div class="flex border-b">
-                    <button class="py-2 px-4 border-b-2 border-blue-500 text-blue-500 font-medium" id="lesson-info-tab">Lesson
-                        Info</button>
-                    <button class="py-2 px-4 font-medium" id="resources-tab">Resources</button>
-                </div>
-                <div id="lesson-info" class="mt-4"></div>
-                <div id="lesson-resources" class="mt-4 hidden flex items-start flex-col gap-2"></div>
-            </div>
-        </div>
-        <div class="md:w-1/3 w-full">
-            <div class="mb-4">
-                <span class="text-sm text-gray-600">100 Lessons</span>
-                <span class="text-sm text-gray-600 ml-2">English</span>
-            </div>
-            <div id="modules-container" class="space-y-4">
-                Modules will be dynamically inserted here
-            </div>
-        </div>
-    </main> -->
-
-    <main class="figtree-400 container mx-auto px-4 sm:py-12 pt-6 pb-32 flex flex-col md:flex-row">
-        <div id="lesson-view" class="md:w-2/3 pr-4 sm:block hidden">
-            <!-- ... (keep the existing lesson-view content) ... -->
-
-            <div id="content-area" class="rounded-lg mb-6">
-                <h2 id="lesson-title" class="text-3xl font-bold mb-4"></h2>
-                <div id="lesson-content" class="mb-6">
-                    Lesson content will be dynamically inserted here
-                </div>
-                <div class="flex border-b">
-                    <button class="py-2 px-4 border-b-2 border-blue-500 text-blue-500 font-medium"
-                        id="lesson-info-tab">Lesson
-                        Info</button>
-                    <button class="py-2 px-4 font-medium" id="resources-tab">Resources</button>
-                </div>
-                <div id="lesson-info" class="mt-4"></div>
-                <div id="lesson-resources" class="mt-4 hidden flex items-start flex-col gap-2"></div>
-            </div>
-        </div>
-        <div id="modules-list" class="md:w-1/3 w-full">
-            <div class="mb-4">
-                <span class="text-sm text-gray-600">100 Lessons</span>
-                <span class="text-sm text-gray-600 ml-2">English</span>
-            </div>
-            <div id="modules-container" class="space-y-4">
-                <!-- Modules will be dynamically inserted here -->
-            </div>
-        </div>
         <div id="mobile-lesson-view" class="w-full sm:hidden">
             <!-- Mobile lesson view content will be dynamically inserted here -->
         </div>
     </main>
 
-    <footer class="bg-[#13181d] text-white p-4 md:hidden fixed bottom-0 w-full">
+    <footer class="bg-[#13181d] text-white p-4 md:hidden fixed bottom-0 w-full z-20">
         <div class="flex justify-evenly gap-4 items-center">
             <a href="../index.html" class="flex flex-col items-center">
                 <i class="fa-solid fa-home text-2xl"></i>
@@ -104,11 +197,9 @@
         </div>
     </footer>
 
-    <footer class="text-white body-font sm:block hidden">
-        <div class="bg-[#13181d]">
-            <div class="container mx-auto py-4 px-5 flex items-center justify-center flex-wrap flex-col sm:flex-row">
-                <p class="text-lg text-center sm:text-left">© 2024 Aleena Rais</p>
-            </div>
+    <footer class="text-white body-font sm:block hidden bg-[#13181d] mt-auto">
+        <div class="container mx-auto py-4 px-5 flex items-center justify-center">
+            <p class="text-lg text-center sm:text-left">© 2024 Aleena Rais</p>
         </div>
     </footer>
 

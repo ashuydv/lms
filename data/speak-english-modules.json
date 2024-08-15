@@ -1,163 +1,183 @@
 {
+  "courseProgress": 0,
   "modules": [
     {
       "sr_no": 1,
       "title": "Introduction to English",
+      "progress": 0,
       "lessons": [
         {
           "sr_no": 1,
           "title": "Basic greetings",
-          "info": "Learn common English greetings and introductions.",
-          "video": "../data/video1.mp4",
+          "info": "Explore Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod praesentium, voluptatem ad minus animi reprehenderit dolore quidem, alias exercitationem quia perspiciatis, deleniti in officia facere nemo id expedita. Omnis ipsam necessitatibus enim!",
+          "video": "<div style=\"padding:56.25% 0 0 0;position:relative;\"><iframe src=\"https://player.vimeo.com/video/905284420?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" style=\"position:absolute;top:0;left:0;width:100%;height:100%;\" title=\"VSL Edit - Market Flow Trader\"></iframe></div><script src=\"https://player.vimeo.com/api/player.js\"></script>",
           "resources": [
             {
               "type": "pdf",
               "title": "Basic English Greetings Guide",
               "url": "/pdfs/basic_greetings.pdf"
+            },
+            {
+              "type": "pdf",
+              "title": "Basic English Greetings Guide",
+              "url": "/pdfs/basic_greetings.pdf"
             }
-          ]
+          ],
+          "completed": false
         },
         {
           "sr_no": 2,
           "title": "Alphabet and numbers",
           "info": "Master the English alphabet and numbers from 1 to 100.",
-          "video": "../data/video2.mp4",
+          "video": "<div style=\"padding:56.25% 0 0 0;position:relative;\"><iframe src=\"https://player.vimeo.com/video/123456789?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" style=\"position:absolute;top:0;left:0;width:100%;height:100%;\" title=\"Alphabet and Numbers\"></iframe></div><script src=\"https://player.vimeo.com/api/player.js\"></script>",
           "resources": [
             {
               "type": "pdf",
               "title": "English Alphabet and Numbers Workbook",
               "url": "/pdfs/alphabet_and_numbers.pdf"
             }
-          ]
+          ],
+          "completed": false
         },
         {
           "sr_no": 3,
           "title": "Simple phrases",
           "info": "Learn essential phrases for everyday communication.",
-          "video": "../data/video2.mp4",
+          "video": "<div style=\"padding:56.25% 0 0 0;position:relative;\"><iframe src=\"https://player.vimeo.com/video/987654321?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" style=\"position:absolute;top:0;left:0;width:100%;height:100%;\" title=\"Simple Phrases\"></iframe></div><script src=\"https://player.vimeo.com/api/player.js\"></script>",
           "resources": [
             {
               "type": "pdf",
               "title": "Essential English Phrases Handbook",
               "url": "/pdfs/simple_phrases.pdf"
             }
-          ]
+          ],
+          "completed": false
         }
       ]
     },
     {
       "sr_no": 2,
       "title": "Greetings, Introductions and Describing yourself",
+      "progress": 0,
       "lessons": [
         {
           "sr_no": 1,
           "title": "Formal greetings",
           "info": "Learn how to greet people in formal situations.",
-          "video": "../data/video2.mp4",
+          "video": "<div style=\"padding:56.25% 0 0 0;position:relative;\"><iframe src=\"https://www.youtube.com/embed/dQw4w9WgXcQ\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture\" style=\"position:absolute;top:0;left:0;width:100%;height:100%;\" title=\"Formal Greetings\"></iframe></div>",
           "resources": [
             {
               "type": "pdf",
               "title": "Formal English Greetings Manual",
               "url": "/pdfs/formal_greetings.pdf"
             }
-          ]
+          ],
+          "completed": false
         },
         {
           "sr_no": 2,
           "title": "Introducing yourself",
           "info": "Practice introducing yourself in various contexts.",
-          "video": "../data/video2.mp4",
+          "video": "<div style=\"padding:56.25% 0 0 0;position:relative;\"><iframe src=\"https://player.vimeo.com/video/565478912?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" style=\"position:absolute;top:0;left:0;width:100%;height:100%;\" title=\"Introducing Yourself\"></iframe></div><script src=\"https://player.vimeo.com/api/player.js\"></script>",
           "resources": [
             {
               "type": "pdf",
               "title": "Self-Introduction in English Guide",
               "url": "/pdfs/introducing_yourself.pdf"
             }
-          ]
+          ],
+          "completed": false
         },
         {
           "sr_no": 3,
           "title": "Describing your appearance",
           "info": "Learn vocabulary and phrases to describe physical appearance.",
-          "video": "../data/video2.mp4",
+          "video": "<div style=\"padding:56.25% 0 0 0;position:relative;\"><iframe src=\"https://www.youtube.com/embed/xxxxxxxxxxx\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture\" style=\"position:absolute;top:0;left:0;width:100%;height:100%;\" title=\"Describing Appearance\"></iframe></div>",
           "resources": [
             {
               "type": "pdf",
               "title": "Describing Appearance in English Workbook",
               "url": "/pdfs/describing_appearance.pdf"
             }
-          ]
+          ],
+          "completed": false
         }
       ]
     },
     {
       "sr_no": 3,
       "title": "Questions",
+      "progress": 0,
       "lessons": [
         {
           "sr_no": 1,
           "title": "Wh- questions",
           "info": "Learn how to form and use Who, What, Where, When, Why, and How questions.",
-          "video": "../data/video2.mp4",
+          "video": "<div style=\"padding:56.25% 0 0 0;position:relative;\"><iframe src=\"https://player.vimeo.com/video/111111111?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" style=\"position:absolute;top:0;left:0;width:100%;height:100%;\" title=\"Wh- Questions\"></iframe></div><script src=\"https://player.vimeo.com/api/player.js\"></script>",
           "resources": [
             {
               "type": "pdf",
               "title": "Mastering Wh- Questions in English",
               "url": "/pdfs/wh_questions.pdf"
             }
-          ]
+          ],
+          "completed": false
         },
         {
           "sr_no": 2,
           "title": "Yes/No questions",
           "info": "Understand and practice forming yes/no questions in English.",
-          "video": "../data/video2.mp4",
+          "video": "<div style=\"padding:56.25% 0 0 0;position:relative;\"><iframe src=\"https://www.youtube.com/embed/yyyyyyyyyy\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture\" style=\"position:absolute;top:0;left:0;width:100%;height:100%;\" title=\"Yes/No Questions\"></iframe></div>",
           "resources": [
             {
               "type": "pdf",
               "title": "Yes/No Questions in English Guide",
               "url": "/pdfs/yes_no_questions.pdf"
             }
-          ]
+          ],
+          "completed": false
         },
         {
           "sr_no": 3,
           "title": "Tag questions",
           "info": "Learn how to use tag questions for confirmation and conversation.",
-          "video": "../data/video2.mp4",
+          "video": "<div style=\"padding:56.25% 0 0 0;position:relative;\"><iframe src=\"https://player.vimeo.com/video/222222222?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" style=\"position:absolute;top:0;left:0;width:100%;height:100%;\" title=\"Tag Questions\"></iframe></div><script src=\"https://player.vimeo.com/api/player.js\"></script>",
           "resources": [
             {
               "type": "pdf",
               "title": "Understanding Tag Questions in English",
               "url": "/pdfs/tag_questions.pdf"
             }
-          ]
+          ],
+          "completed": false
         },
         {
           "sr_no": 4,
           "title": "Responding to questions",
           "info": "Practice giving appropriate and detailed responses to various question types.",
-          "video": "../data/video2.mp4",
+          "video": "<div style=\"padding:56.25% 0 0 0;position:relative;\"><iframe src=\"https://www.youtube.com/embed/zzzzzzzzzz\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture\" style=\"position:absolute;top:0;left:0;width:100%;height:100%;\" title=\"Responding to Questions\"></iframe></div>",
           "resources": [
             {
               "type": "pdf",
               "title": "Effective Responses to Questions in English",
               "url": "/pdfs/responding_to_questions.pdf"
             }
-          ]
+          ],
+          "completed": false
         },
         {
           "sr_no": 5,
           "title": "Hypothetical Questions & Negative Questions",
           "info": "Explore more complex question forms and how to respond to them.",
-          "video": "../data/video2.mp4",
+          "video": "<div style=\"padding:56.25% 0 0 0;position:relative;\"><iframe src=\"https://player.vimeo.com/video/333333333?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" style=\"position:absolute;top:0;left:0;width:100%;height:100%;\" title=\"Hypothetical and Negative Questions\"></iframe></div><script src=\"https://player.vimeo.com/api/player.js\"></script>",
           "resources": [
             {
               "type": "pdf",
               "title": "Advanced Question Types in English",
               "url": "/pdfs/hypothetical_negative_questions.pdf"
             }
-          ]
+          ],
+          "completed": false
         }
       ]
     }
