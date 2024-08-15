@@ -123,3 +123,22 @@
     height: 40px;
   }
 }
+
+#certificateContainer {
+  max-width: 1000px;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 2rem;
+  display: none;
+}
+
+#certificateContainer #certificate-name {
+  position: absolute;
+  top: 44.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: white;
+  text-transform: capitalize;
+}

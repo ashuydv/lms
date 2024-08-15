@@ -10,10 +10,62 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        #certificateContainer {
+            display: none;
+            max-width: 800px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        #certificateContainer img {
+            width: 100%;
+            height: auto;
+        }
+
+        #certificate-name {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            width: 80%;
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #downloadOptions {
+            display: none;
+        }
+    </style>
 </head>
 
 <body class="figtree-400 bg-[#ede9e6]">
-    <header class="figtree-400 text-gray-400 sm:block hidden bg-[#13181d] body-font" id="main-nav">
+    <header class="figtree-400 text-gray-400 sm:block hidden fixed w-full bg-[#13181d] z-50 body-font" id="main-nav">
         <div class="container-fluid mx-auto flex flex-wrap p-5 py-0 flex-col md:flex-row items-center">
             <nav class="flex text-center flex-wrap items-center justify-center w-full pt-3 text-base gap-3">
                 <a href="../index.html"
@@ -29,35 +81,46 @@
             </nav>
         </div>
     </header>
+
     <main id="content" class="min-h-screen">
         <div class="container-fluid mx-auto sm:py-36 sm:px-16 px-0 pt-36 pb-10">
-            <div>
-                <a href="../index.html" id="back-button"
-                    class="w-[100%] min-h-[72px] m-0 sm:w-[60px] sm:min-h-[60px] sm:block fixed w-full top-[-5px] left-[0px] bg-[#13181d] sm:rounded-full px-5 py-6 sm:p-0">
-                    <i
-                        class="fa-solid text-white fa-arrow-left text-[12px] absolute sm:top-[50%] sm:left-[50%] sm:-translate-x-[50%] sm:-translate-y-[50%] top-[50%] left-[6%] -translate-y-[50%]"></i>
-                </a>
-                <div id="moduleName" class="text-black text-2xl font-bold text-center">Generate Certificate</div>
-            </div>
-
-            <div class="p-6 py-10 pt-4 max-w-md mx-auto">
-                <p class="text-center mb-6 text-lg font-medium text-gray-800">
+            <div class="p-6 py-10 pt-4 max-w-xl mx-auto">
+                <h1 class="text-center mb-4 text-2xl font-semibold text-gray-800">
                     You can generate certificate after 2 months of enrollment in the course.
-                </p>
-                <input type="text" placeholder="Enter Your Name"
+                </h1>
+                <input type="text" placeholder="Enter Your Name" id="nameInput"
                     class="w-full p-3 mb-4 rounded-lg border border-gray-300 text-gray-700 placeholder-gray-400">
                 <button
                     class="w-full bg-gray-900 text-white py-3 rounded-lg mb-4 font-medium hover:bg-gray-800 transition-colors duration-300"
                     id="generateCertificate">
                     Generate Certificate
                 </button>
-                <button
-                    class="w-full bg-blue-500 text-white py-3 rounded-lg font-medium hover:bg-blue-600 transition-colors duration-300"
-                    id="downloadCertificate">
+                <!-- <button
+                    class="w-full bg-yellow-500 text-white py-3 rounded-lg font-medium hover:bg-yellow-600 transition-colors duration-300"
+                    id="downloadCertificate" style="display: none;">
                     Download Certificate
-                </button>
+                </button> -->
+                <div class="download-options flex items-center justify-between gap-4 mx-auto" id="downloadOptions">
+                    <button
+                        class="download-btn w-full bg-gray-900 text-white py-3 rounded-lg mb-4 font-medium hover:bg-gray-800 transition-colors duration-300"
+                        id="downloadJPG">Download JPG</button>
+                    <button
+                        class="download-btn w-full bg-gray-900 text-white py-3 rounded-lg mb-4 font-medium hover:bg-gray-800 transition-colors duration-300"
+                        id="downloadPNG">Download PNG</button>
+                    <button
+                        class="download-btn w-full bg-gray-900 text-white py-3 rounded-lg mb-4 font-medium hover:bg-gray-800 transition-colors duration-300"
+                        id="downloadPDF">Download PDF</button>
+                </div>
+            </div>
+            <div class="loader" id="loader"></div>
+
+            <div id="certificateContainer">
+                <img src="../assets/certifcate_template.jpg" class="img-fluid" alt="Certificate">
+                <div id="certificate-name"></div>
             </div>
         </div>
+
+
     </main>
 
     <footer class="bg-[#13181d] text-white p-4 md:hidden fixed bottom-0 w-full">
@@ -81,7 +144,81 @@
         </div>
     </footer>
 
-    <script type="module" src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const generateBtn = document.getElementById('generateCertificate');
+            const downloadOptions = document.getElementById('downloadOptions');
+            const nameInput = document.getElementById('nameInput');
+            const certificateContainer = document.getElementById('certificateContainer');
+            const certificateName = document.getElementById("certificate-name");
+            const loader = document.getElementById("loader");
+
+            generateBtn.addEventListener('click', function () {
+                const name = nameInput.value.trim();
+                if (name) {
+                    showLoader();
+                    setTimeout(() => {
+                        generateCertificate(name);
+                        hideLoader();
+                    }, 1500); // Simulating generation time
+                } else {
+                    alert('Please enter a name');
+                }
+            });
+
+            function showLoader() {
+                loader.style.display = 'block';
+                certificateContainer.style.display = 'none';
+                downloadOptions.style.display = 'none';
+            }
+
+            function hideLoader() {
+                loader.style.display = 'none';
+            }
+
+            function generateCertificate(name) {
+                certificateName.textContent = name;
+                certificateContainer.style.display = 'block';
+                downloadOptions.style.display = 'flex';
+                downloadOptions.style.alignItems = 'center';
+                downloadOptions.style.justifyContent = 'space-evenly';
+            }
+
+            document.getElementById('downloadJPG').addEventListener('click', function () {
+                downloadImage('jpeg');
+            });
+
+            document.getElementById('downloadPNG').addEventListener('click', function () {
+                downloadImage('png');
+            });
+
+            document.getElementById('downloadPDF').addEventListener('click', function () {
+                downloadPDF();
+            });
+
+            function downloadImage(format) {
+                html2canvas(certificateContainer).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = `${nameInput.value.trim()}.${format}`;
+                    link.href = canvas.toDataURL(`image/${format}`);
+                    link.click();
+                });
+            }
+
+            function downloadPDF() {
+                html2canvas(certificateContainer).then(canvas => {
+                    const imgData = canvas.toDataURL('image/png');
+                    const pdf = new jspdf.jsPDF({
+                        orientation: 'landscape',
+                        unit: 'px',
+                        format: [canvas.width, canvas.height]
+                    });
+                    pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+                    pdf.save(`${nameInput.value.trim()}.pdf`);
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
