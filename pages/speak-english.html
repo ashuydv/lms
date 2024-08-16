@@ -31,22 +31,30 @@
         }
 
         .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #f1f1f110;
         }
 
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #888;
+            background: #88888810;
             border-radius: 4px;
         }
 
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #555;
+            background: #55555510;
         }
 
         .layout-container {
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            position: relative;
+        }
+
+        #lesson-view {
+            position: sticky;
+            top: 32px;
+            overflow-y: auto;
+            border: 1px;
         }
 
         .lesson-item {
@@ -80,10 +88,6 @@
             .layout-container {
                 flex-direction: row;
             }
-
-            /* #modules-container {
-                padding-bottom: 6rem !important;
-            } */
         }
 
         @media screen and (max-width: 1000px) {
@@ -139,6 +143,49 @@
                 transform: translate(-50%, -50%) rotate(360deg);
             }
         }
+
+        .layout-container {
+            display: flex;
+            height: calc(100vh - 80px);
+            /* Adjust based on your header height */
+            overflow: hidden;
+        }
+
+        #lesson-view {
+            position: sticky;
+            top: 80px;
+            /* Adjust based on your header height */
+            height: calc(100vh - 80px);
+            /* Adjust based on your header height */
+            overflow-y: auto;
+        }
+
+        #modules-list {
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        #modules-container {
+            min-height: 100%;
+            padding-bottom: 20px;
+            /* Add some padding at the bottom for better scrolling experience */
+        }
+
+        @media (max-width: 767px) {
+            .layout-container {
+                flex-direction: column;
+                height: auto;
+            }
+
+            #lesson-view {
+                position: static;
+                height: auto;
+            }
+
+            #modules-list {
+                height: auto;
+            }
+        }
     </style>
 </head>
 
@@ -174,10 +221,16 @@
                     </div>
                 </div>
             </div>
-            <div id="modules-list" class="md:w-1/3 w-full">
+            <div id="modules-list" class="md:w-1/3 w-full custom-scrollbar">
                 <div class="mb-4">
-                    <span class="text-md font-semibold">100 Lessons</span>
-                    <span class="text-md font-semibold ml-2">English</span>
+                    <div class="flex justify-start items-center mb-2">
+                        <span class="text-md font-semibold mr-2" id="lessonsLength">100 Lessons, </span>
+                        <span class="text-md font-semibold" id="lessonsLang">English</span>
+                    </div>
+                    <div class="progress-bar bg-gray-200 h-2 rounded-full relative">
+                        <div class="progress bg-green-500 h-2 rounded-full" style="width: 0%"></div>
+                        <div class="progress-percentage absolute right-0 top-0 -mt-6 text-md font-bold"></div>
+                    </div>
                 </div>
                 <div id="modules-container" class="space-y-4 custom-scrollbar">
                     <!-- Modules will be dynamically inserted here -->

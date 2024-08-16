@@ -1,5 +1,3 @@
-// Add this to your CSS file or in a <style> tag in your HTML
-// Your JavaScript file (speak-english.js)
 console.log('Speak English script loaded');
 
 let currentModule = 0;
@@ -10,6 +8,7 @@ let completedLessons = JSON.parse(localStorage.getItem('completedLessons')) || {
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOM fully loaded and parsed');
     fetchModules();
+    setupBackButtonListener();
 });
 
 async function fetchModules() {
@@ -20,6 +19,8 @@ async function fetchModules() {
         localStorage.setItem('modules', JSON.stringify(data.modules));
         renderModules(data.modules);
         initializeProgressBar(data.modules);
+        addLessonClickHandlers();
+        initializeMobileView();
 
         // Only load the first lesson automatically on desktop
         if (window.innerWidth >= 768 && data.modules.length > 0 && data.modules[0].lessons.length > 0) {
@@ -41,10 +42,10 @@ function renderModules(modules) {
     modulesContainer.innerHTML = ''; // Clear existing content
 
     // Add progress bar
-    const progressBarContainer = document.createElement('div');
-    progressBarContainer.className = 'progress-bar';
-    progressBarContainer.innerHTML = '<div class="progress" style="width: 0%"></div>';
-    modulesContainer.appendChild(progressBarContainer);
+    // const progressBarContainer = document.createElement('div');
+    // progressBarContainer.className = 'progress-bar';
+    // progressBarContainer.innerHTML = '<div class="progress" style="width: 0%"></div>';
+    // modulesContainer.appendChild(progressBarContainer);
 
     modules.forEach((module, moduleIndex) => {
         const moduleElement = document.createElement('div');
@@ -53,7 +54,7 @@ function renderModules(modules) {
             <button class="accordion-header w-full rounded-xl text-left p-4 font-semibold flex justify-between items-start">
                 <div class="flex items-start w-full flex-col">
                     <span class="text-md">Module ${module.sr_no}</span>   
-                    <span class="text-lg">${module.title}</span>
+                    <span class="text-xl leading-6 mb-2">${module.title}</span>
                     <span class="text-sm text-gray-500">${module.lessons.length} Lessons</span>
                 </div>
                 <i class="fa-solid fa-chevron-down"></i>
@@ -61,7 +62,7 @@ function renderModules(modules) {
             <div class="accordion-content transition">
                 <ul class="sm:p-4 p-2 space-y-2">
                     ${module.lessons.map((lesson, lessonIndex) => `
-                        <li class="lesson-item flex items-center cursor-pointer sm:px-3 sm:py-2 px-4 py-2 hover:bg-gray-100 rounded sm:border-0 border-2 ${isLessonCompleted(moduleIndex, lessonIndex) ? 'completed-lesson' : ''}" data-module="${moduleIndex}" data-lesson="${lessonIndex}">
+                        <li class="lesson-item flex items-center cursor-pointer sm:px-3 sm:py-2 px-2 py-2 hover:bg-gray-100 rounded sm:border-0 ${isLessonCompleted(moduleIndex, lessonIndex) ? 'completed-lesson' : ''}" data-module="${moduleIndex}" data-lesson="${lessonIndex}">
                             <div class="flex items-start flex-col w-full">
                                 <div class="flex items-start justify-between w-full">
                                     <div>
@@ -91,21 +92,6 @@ function renderModules(modules) {
 
         modulesContainer.appendChild(moduleElement);
     });
-
-    // Add event listeners to lesson items
-    document.querySelectorAll('.lesson-item').forEach(item => {
-        item.addEventListener('click', function (event) {
-            if (!event.target.classList.contains('mark-complete-btn')) {
-                const moduleIndex = parseInt(this.dataset.module);
-                const lessonIndex = parseInt(this.dataset.lesson);
-                loadLesson(moduleIndex, lessonIndex);
-            }
-        });
-    });
-
-    // Make sure the modules list is visible on mobile
-    document.getElementById('modules-list').classList.remove('hidden');
-    document.getElementById('mobile-lesson-view').classList.add('hidden');
 
     updateProgressBar(modules);
 }
@@ -151,16 +137,16 @@ function loadLesson(moduleIndex, lessonIndex) {
                 <div class="video-loader"></div>
                 ${lesson.video}
             </div>
-            <div class="flex border-b mb-4">
+            <div class="flex justify-between mt-4 w-full px-3">
+                <button id="mobile-prev-lesson" class="bg-black text-white px-4 py-2 rounded"><</button>
+                <button id="mobile-next-lesson" class="bg-black text-white px-4 py-2 rounded">></button>
+            </div>
+            <div class="flex border-b my-4 mt-[12px] items-center justify-center">
                 <button class="py-2 px-4 border-b-2 border-black text-black font-medium" id="mobile-lesson-info-tab">Lesson Info</button>
                 <button class="py-2 px-4 font-medium" id="mobile-resources-tab">Resources</button>
             </div>
             <div id="mobile-lesson-info" class="mt-4">${lesson.info}</div>
-            <div id="mobile-lesson-resources" class="mt-4 hidden"></div>
-        </div>
-        <div class="flex justify-between mt-4">
-            <button id="mobile-prev-lesson" class="bg-black text-white px-4 py-2 rounded"><</button>
-            <button id="mobile-next-lesson" class="bg-black text-white px-4 py-2 rounded">></button>
+            <div id="mobile-lesson-resources" class="mt-4 gap-4 flex items-center hidden"></div>
         </div>
     `;
 
@@ -300,17 +286,10 @@ function updateProgressBar(modules) {
 
     const progressBar = document.querySelector('.progress');
     const progressBarContainer = document.querySelector('.progress-bar');
+    const percentageText = document.querySelector('.progress-percentage');
 
-    if (progressBar && progressBarContainer) {
+    if (progressBar && progressBarContainer && percentageText) {
         progressBar.style.width = `${progressPercentage}%`;
-
-        // Add or update percentage text
-        let percentageText = progressBarContainer.querySelector('.progress-percentage');
-        if (!percentageText) {
-            percentageText = document.createElement('div');
-            percentageText.className = 'progress-percentage absolute right-0 top-0 mr-2 text-sm font-bold';
-            progressBarContainer.appendChild(percentageText);
-        }
         percentageText.textContent = `${Math.round(progressPercentage)}%`;
     }
 
@@ -322,6 +301,7 @@ function updateProgressBar(modules) {
         button.textContent = completedLessons[lessonKey] ? 'Completed' : 'Mark Complete';
     });
 }
+
 
 function initializeProgressBar(modules) {
     updateProgressBar(modules);
@@ -363,23 +343,55 @@ function showModulesList() {
     document.getElementById('mobile-lesson-view').classList.add('hidden');
 }
 
-// Add event listener for the back button in the header
-document.querySelector('header a').addEventListener('click', function (e) {
-    if (window.innerWidth < 768 && isInLessonView) {  // Only for mobile view and when in a lesson
-        e.preventDefault();
-        showModulesList();
-    }
-    // If not in lesson view or not on mobile, the default behavior (going back to index) will occur
-});
+function setupBackButtonListener() {
+    window.addEventListener('popstate', handleBackNavigation);
+}
 
+function handleBackNavigation(event) {
+    if (window.innerWidth < 768) {
+        if (isInLessonView) {
+            event.preventDefault();
+            showModulesList();
+        }
+        // If not in lesson view, let the default back behavior occur
+    }
+}
+
+// Update the back button click handler
 document.getElementById('back-button').addEventListener('click', function (e) {
     e.preventDefault();
-    if (isInLessonView) {
-        showModulesList();
+    if (window.innerWidth < 768) {
+        if (isInLessonView) {
+            showModulesList();
+        } else {
+            window.history.back();
+        }
     } else {
         window.location.href = '../index.html';
     }
 });
+
+// Update lesson item click handler
+function addLessonClickHandlers() {
+    document.querySelectorAll('.lesson-item').forEach(item => {
+        item.addEventListener('click', function (event) {
+            if (!event.target.classList.contains('mark-complete-btn')) {
+                const moduleIndex = parseInt(this.dataset.module);
+                const lessonIndex = parseInt(this.dataset.lesson);
+                loadLesson(moduleIndex, lessonIndex);
+                if (window.innerWidth < 768) {
+                    history.pushState({ page: 'lesson' }, '', '');
+                }
+            }
+        });
+    });
+}
+
+function initializeMobileView() {
+    if (window.innerWidth < 768) {
+        showModulesList();
+    }
+}
 
 // Tab switching
 document.getElementById('lesson-info-tab').addEventListener('click', function () {
