@@ -61,6 +61,16 @@
         #downloadOptions {
             display: none;
         }
+
+        @media screen and (max-width: 1000px) {
+            #certificateContainer {
+                padding: 12px;
+            }
+
+            #certificate-name {
+                font-size: 1rem !important;
+            }
+        }
     </style>
 </head>
 
@@ -83,7 +93,7 @@
     </header>
 
     <main id="content" class="min-h-screen">
-        <div class="container-fluid mx-auto sm:py-36 sm:px-16 px-0 pt-36 pb-10">
+        <div class="container-fluid mx-auto sm:py-36 sm:px-16 px-0 py-10">
             <div class="p-6 py-10 pt-4 max-w-xl mx-auto">
                 <h1 class="text-center mb-4 text-2xl font-semibold text-gray-800">
                     You can generate certificate after 2 months of enrollment in the course.
@@ -100,15 +110,16 @@
                     id="downloadCertificate" style="display: none;">
                     Download Certificate
                 </button> -->
-                <div class="download-options flex items-center justify-between gap-4 mx-auto" id="downloadOptions">
+                <div class="download-options flex items-center justify-between sm:flex-row flex-col gap-4 mx-auto"
+                    id="downloadOptions">
                     <button
-                        class="download-btn w-full bg-gray-900 text-white py-3 rounded-lg mb-4 font-medium hover:bg-gray-800 transition-colors duration-300"
+                        class="download-btn w-full bg-gray-900 text-white py-3 rounded-lg sm:mb-4 font-medium hover:bg-gray-800 transition-colors duration-300"
                         id="downloadJPG">Download JPG</button>
                     <button
-                        class="download-btn w-full bg-gray-900 text-white py-3 rounded-lg mb-4 font-medium hover:bg-gray-800 transition-colors duration-300"
+                        class="download-btn w-full bg-gray-900 text-white py-3 rounded-lg sm:mb-4 font-medium hover:bg-gray-800 transition-colors duration-300"
                         id="downloadPNG">Download PNG</button>
                     <button
-                        class="download-btn w-full bg-gray-900 text-white py-3 rounded-lg mb-4 font-medium hover:bg-gray-800 transition-colors duration-300"
+                        class="download-btn w-full bg-gray-900 text-white py-3 rounded-lg sm:mb-4 font-medium hover:bg-gray-800 transition-colors duration-300"
                         id="downloadPDF">Download PDF</button>
                 </div>
             </div>
