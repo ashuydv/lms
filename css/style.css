@@ -125,12 +125,17 @@
 }
 
 #certificateContainer {
-  max-width: 1000px;
+  max-width: 100%;
+  width: 100%;
   margin: auto;
   overflow: hidden;
   position: relative;
   margin-bottom: 2rem;
   display: none;
+}
+
+#certificateContainer canvas {
+  width: 100%;
 }
 
 #certificateContainer #certificate-name {

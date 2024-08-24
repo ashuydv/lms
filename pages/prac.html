@@ -5,16 +5,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Generate Certificate</title>
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&amp;display=swap"
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         #certificateContainer {
-            display: block;
-            max-width: 80%;
+            display: none;
+            max-width: 800px;
             margin: 20px auto;
             position: relative;
         }
@@ -29,10 +30,10 @@
             top: 45%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 32px;
+            font-size: 24px;
             font-weight: bold;
+            color: #333;
             text-align: center;
-            color: #fff;
             width: 80%;
         }
 
@@ -59,7 +60,6 @@
 
         #downloadOptions {
             display: none;
-            justify-content: space-evenly;
         }
 
         @media screen and (max-width: 1000px) {
@@ -105,20 +105,27 @@
                     id="generateCertificate">
                     Generate Certificate
                 </button>
+                <!-- <button
+                    class="w-full bg-yellow-500 text-white py-3 rounded-lg font-medium hover:bg-yellow-600 transition-colors duration-300"
+                    id="downloadCertificate" style="display: none;">
+                    Download Certificate
+                </button> -->
                 <div class="download-options flex items-center justify-between sm:flex-row flex-col gap-4 mx-auto"
                     id="downloadOptions">
                     <button
                         class="download-btn w-full bg-gray-900 text-white py-3 rounded-lg sm:mb-4 font-medium hover:bg-gray-800 transition-colors duration-300"
-                        id="downloadPDF">Download PDF</button>
+                        id="downloadPDF">Download PDF Certificate</button>
                 </div>
             </div>
             <div class="loader" id="loader"></div>
 
             <div id="certificateContainer">
-                <img src="../assets/certifcate_template@2x.png" class="img-fluid" alt="Certificate">
+                <img src="../assets/certifcate_template.jpg" class="img-fluid" alt="Certificate">
                 <div id="certificate-name"></div>
             </div>
         </div>
+
+
     </main>
 
     <footer class="bg-[#13181d] text-white p-4 md:hidden fixed bottom-0 w-full">
@@ -141,22 +148,22 @@
             </div>
         </div>
     </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const generateBtn = document.getElementById('generateCertificate');
             const downloadOptions = document.getElementById('downloadOptions');
             const nameInput = document.getElementById('nameInput');
             const certificateContainer = document.getElementById('certificateContainer');
-            const certificateName = document.getElementById("certificate-name");
             const loader = document.getElementById("loader");
 
-            generateBtn.addEventListener('click', async function () {
+            generateBtn.addEventListener('click', function () {
                 const name = nameInput.value.trim();
                 if (name) {
                     showLoader();
-                    await generateCertificate(name);
-                    hideLoader();
+                    setTimeout(() => {
+                        generateCertificate(name);
+                        hideLoader();
+                    }, 1500); // Simulating generation time
                 } else {
                     alert('Please enter a name');
                 }
@@ -172,40 +179,72 @@
                 loader.style.display = 'none';
             }
 
-            async function generateCertificate(name) {
-                certificateName.textContent = name;
+            function generateCertificate(name) {
+                const canvas = document.createElement('canvas');
+                const scale = 4; // Increase resolution
+                canvas.width = 1754 * scale; // A4 landscape width at 600 DPI
+                canvas.height = 1240 * scale; // A4 landscape height at 600 DPI
+                const ctx = canvas.getContext('2d');
+                ctx.scale(scale, scale);
+
+                // Background
+                ctx.fillStyle = '#FFFDF7';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Border
+                ctx.strokeStyle = '#D4AF37';
+                ctx.lineWidth = 5;
+                ctx.strokeRect(10, 10, 1734, 1220);
+
+                // Title
+                ctx.font = 'bold 80px "Times New Roman", serif';
+                ctx.fillStyle = '#000000';
+                ctx.textAlign = 'center';
+                ctx.fillText('Certificate of Completion', 877, 200);
+
+                // Content
+                ctx.font = '40px Arial, sans-serif';
+                ctx.fillText('This is to certify that', 877, 400);
+
+                ctx.font = 'bold 60px "Times New Roman", serif';
+                ctx.fillText(name, 877, 500);
+
+                ctx.font = '40px Arial, sans-serif';
+                ctx.fillText('has successfully completed the course', 877, 600);
+
+                ctx.font = 'bold 50px "Times New Roman", serif';
+                ctx.fillText('Advanced JavaScript Programming', 877, 700);
+
+                ctx.font = '40px Arial, sans-serif';
+                ctx.fillText(`on ${new Date().toLocaleDateString()}`, 877, 800);
+
+                // Signature
+                ctx.font = 'italic 30px "Times New Roman", serif';
+                ctx.fillText('John Doe', 300, 1000);
+                ctx.fillText('Course Instructor', 300, 1040);
+
+                certificateContainer.innerHTML = '';
+                certificateContainer.appendChild(canvas);
                 certificateContainer.style.display = 'block';
                 downloadOptions.style.display = 'flex';
+                downloadOptions.style.alignItems = 'center';
+                downloadOptions.style.justifyContent = 'space-evenly';
             }
 
-            document.getElementById('downloadPDF').addEventListener('click', downloadPDF);
+            document.getElementById('downloadPDF').addEventListener('click', function () {
+                downloadPDF();
+            });
 
-            async function downloadImage(format) {
-                try {
-                    const canvas = await html2canvas(certificateContainer);
-                    const link = document.createElement('a');
-                    link.download = `${nameInput.value.trim()}.${format}`;
-                    link.href = canvas.toDataURL(`image/${format}`);
-                    link.click();
-                } catch (error) {
-                    console.error('Error generating image:', error);
-                }
-            }
-
-            async function downloadPDF() {
-                try {
-                    const canvas = await html2canvas(certificateContainer);
-                    const imgData = canvas.toDataURL('image/png');
-                    const pdf = new jspdf.jsPDF({
-                        orientation: 'landscape',
-                        unit: 'px',
-                        format: [canvas.width, canvas.height]
-                    });
-                    pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-                    pdf.save(`${nameInput.value.trim()}.pdf`);
-                } catch (error) {
-                    console.error('Error generating PDF:', error);
-                }
+            function downloadPDF() {
+                const canvas = certificateContainer.querySelector('canvas');
+                const imgData = canvas.toDataURL('image/jpeg', 1.0);
+                const pdf = new jspdf.jsPDF({
+                    orientation: 'landscape',
+                    unit: 'px',
+                    format: [canvas.width / 4, canvas.height / 4]
+                });
+                pdf.addImage(imgData, 'JPEG', 0, 0, canvas.width / 4, canvas.height / 4);
+                pdf.save(`${nameInput.value.trim()}_certificate.pdf`);
             }
         });
     </script>
