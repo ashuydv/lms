@@ -122,7 +122,12 @@ function loadLesson(moduleIndex, lessonIndex) {
     document.getElementById('lesson-content').innerHTML = `
         <div class="rounded-lg my-4 relative">
             <div class="video-loader"></div>
-            ${lesson.video}
+             <div class="iframe-wrapper relative">
+                ${lesson.video}
+                <div class="watermark absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl opacity-50 pointer-events-none select-none">
+                    aleenarais
+                </div>
+            </div>
         </div>
     `;
     document.getElementById('lesson-info').textContent = lesson.info;
@@ -135,7 +140,12 @@ function loadLesson(moduleIndex, lessonIndex) {
             <h2 class="sm:text-2xl text-xl font-bold mb-4">${lesson.title}</h2>
             <div class="rounded-lg my-4 relative">
                 <div class="video-loader"></div>
-                ${lesson.video}
+                 <div class="iframe-wrapper relative">
+                    ${lesson.video}
+                    <div class="watermark absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl opacity-50 pointer-events-none select-none">
+                        aleenarais
+                    </div>
+                </div>
             </div>
             <div class="flex justify-between mt-4 w-full px-3">
                 <button id="mobile-prev-lesson" class="bg-black text-white px-4 py-2 rounded"><</button>
@@ -246,6 +256,8 @@ function loadLesson(moduleIndex, lessonIndex) {
             }, 5000); // Adjust time as needed
         }
     });
+
+    moveWatermark();
 }
 
 function isLessonCompleted(moduleIndex, lessonIndex) {
@@ -618,5 +630,36 @@ function handleFullscreenChange() {
     if (document.fullscreenElement) {
         blurVideo();
         setTimeout(unblurVideo, 500);
+    }
+}
+
+function moveWatermark() {
+    const watermark = document.querySelector('.watermark');
+    const wrapper = document.querySelector('.iframe-wrapper');
+
+    if (!watermark || !wrapper) return;
+
+    function updatePosition() {
+        const maxX = wrapper.clientWidth - watermark.clientWidth;
+        const maxY = wrapper.clientHeight - watermark.clientHeight;
+
+        const newX = Math.random() * maxX;
+        const newY = Math.random() * maxY;
+
+        watermark.style.left = `${newX}px`;
+        watermark.style.top = `${newY}px`;
+    }
+
+    // Initial position
+    updatePosition();
+
+    // Update position every 3 seconds
+    setInterval(updatePosition, 10000);
+}
+
+function updateWatermark(text) {
+    const watermark = document.querySelector('.watermark');
+    if (watermark) {
+        watermark.textContent = text;
     }
 }
