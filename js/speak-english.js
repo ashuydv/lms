@@ -5,7 +5,7 @@ let currentLesson = 0;
 let isInLessonView = false;
 let completedLessons = JSON.parse(localStorage.getItem('completedLessons')) || {};
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     console.log('DOM fully loaded and parsed');
     fetchModules();
     setupBackButtonListener();
@@ -40,12 +40,6 @@ function renderModules(modules) {
     }
 
     modulesContainer.innerHTML = ''; // Clear existing content
-
-    // Add progress bar
-    // const progressBarContainer = document.createElement('div');
-    // progressBarContainer.className = 'progress-bar';
-    // progressBarContainer.innerHTML = '<div class="progress" style="width: 0%"></div>';
-    // modulesContainer.appendChild(progressBarContainer);
 
     modules.forEach((module, moduleIndex) => {
         const moduleElement = document.createElement('div');
@@ -123,10 +117,12 @@ function loadLesson(moduleIndex, lessonIndex) {
         <div class="rounded-lg my-4 relative">
             <div class="video-loader"></div>
              <div class="iframe-wrapper relative">
-                ${lesson.video}
-                <div class="watermark absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl opacity-50 pointer-events-none select-none">
-                    aleenarais
-                </div>
+             ${lesson.video}
+             <div id="overlay-wrapper">
+             <div class="watermark absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl opacity-50 pointer-events-none select-none">
+                 aleenarais
+             </div>
+             </div>
             </div>
         </div>
     `;
@@ -661,5 +657,33 @@ function updateWatermark(text) {
     const watermark = document.querySelector('.watermark');
     if (watermark) {
         watermark.textContent = text;
+    }
+}
+
+async function checkScreenSharing() {
+    const overlayDisplay = document.getElementById("overlay-wrapper");
+
+    try {
+        const stream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+
+        console.log(stream);
+        if (stream.active) {
+            overlayDisplay.classList.add("overlay")
+        } else {
+            overlayDisplay.classList.remove("overlay")
+        }
+
+        return true;
+    } catch (err) {
+        if (err.name === 'NotAllowedError') {
+            overlayDisplay.classList.remove("overlay")
+            // User denied permission, or screen sharing is already in progress
+            console.log('Screen sharing permission denied or already in progress');
+        } else {
+            overlayDisplay.classList.remove("overlay")
+            // Screen sharing is not supported or another error occurred
+            console.error('Error checking screen sharing:', err);
+        }
+        return false;
     }
 }
