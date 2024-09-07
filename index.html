@@ -208,6 +208,30 @@
         loader ...
         <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
     </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyC2KxqyX-fEmR2xRegMzv3N8XEEulUBYw8",
+            authDomain: "ar-lms.firebaseapp.com",
+            projectId: "ar-lms",
+            storageBucket: "ar-lms.appspot.com",
+            messagingSenderId: "713036776161",
+            appId: "1:713036776161:web:d28052c98148d286d3ada0",
+            measurementId: "G-E6CPDKNKJN"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
 </body>
 
 </html>

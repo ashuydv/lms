@@ -1,0 +1,245 @@
+@font-face {
+  font-family: "Rubik";
+  src: url("../assets/Rubik-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("../assets/Rubik-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("../assets/Rubik-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("../assets/Rubik-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("../assets/Rubik-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("../assets/Rubik-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("../assets/Rubik-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("../assets/Rubik-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("../assets/Rubik-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("../assets/Rubik-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+#certificateContainer {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+}
+
+#certificateContainer .certificate-logo {
+  max-width: 120px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+#certificateContainer .certificate-logo img {
+  width: 100%;
+  height: 100%;
+}
+
+#certificateContainer #certificate {
+  position: relative;
+  background-color: #dab25d;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  aspect-ratio: 1 / 0.7;
+}
+
+#certificateContainer .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 72%;
+  background-color: #2d313c;
+  border-bottom-left-radius: 30%;
+  border-bottom-right-radius: 30%;
+}
+
+#certificateContainer .content {
+  position: relative;
+  z-index: 10;
+  padding: 1rem;
+  text-align: center;
+}
+
+#certificateContainer h1 {
+  font-size: 25px;
+  color: #fff;
+  margin: 0rem;
+  /* font-family: 'Savoye-Let', sans-serif;
+    src: url('../assets/savoye-let.ttf') format('truetype'); */
+  font-family: "Rubik", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: normal;
+  margin-bottom: 16px;
+}
+
+#certificateContainer .recipient,
+#certificateContainer .course {
+  font-size: 1.25rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+#certificateContainer .course {
+  margin-bottom: 0rem;
+}
+
+#certificateContainer .c-name {
+  max-width: 50%;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+#certificateContainer #certificate-name {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 10px;
+  line-height: 45px;
+}
+
+#certificateContainer .course-name {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #fff;
+  margin-top: 5px;
+}
+
+#certificateContainer .details {
+  display: flex;
+  justify-content: space-between;
+  color: #111;
+  margin-top: 16%;
+}
+
+#certificateContainer .details div {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#certificateContainer .details div p {
+  margin: 0.25rem 0;
+}
+
+#certificateContainer .details .label {
+  font-weight: bold;
+}
+
+#certificateContainer .certificate-id {
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: left;
+  color: #2d313c;
+  font-weight: 400;
+  width: 100%;
+}
+
+#certificateContainer .certificate-id p {
+  margin-bottom: 15px;
+  padding-left: 15px;
+}
+
+#certificateContainer .reward-logo {
+  width: 120px;
+  height: 120px;
+  background: #dab25d;
+  position: absolute;
+  top: 62.5%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  border: 1px solid;
+}
+
+#certificateContainer .aleena-signature {
+  position: absolute;
+  color: black;
+  line-height: normal;
+  top: 80%;
+  left: 50%;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+#certificateContainer .aleena-signature h3 {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 45px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid;
+}
+
+#certificateContainer .aleena-signature .instructor-info {
+  margin-top: 5px;
+}
+
+#certificateContainer .aleena-signature .instructor-info p:first-child {
+  font-weight: 700;
+}
+
+#certificateContainer .aleena-signature .instructor-info p:last-child {
+  font-weight: 400;
+  font-style: italic;
+}
+
+#certificateContainer .certificate-id p {
+  font-size: 14px;
+  text-decoration: underline;
+  line-height: 16px;
+}

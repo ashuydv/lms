@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Achievement</title>
+    <style>
+        @font-face {
+            font-family: 'Rubik';
+            src: url('../assets/Rubik-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Rubik';
+            src: url('../assets/Rubik-Bold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Rubik';
+            src: url('../assets/Rubik-Italic.ttf') format('truetype');
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Rubik';
+            src: url('../assets/Rubik-BoldItalic.ttf') format('truetype');
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Rubik';
+            src: url('../assets/Rubik-Light.ttf') format('truetype');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Rubik';
+            src: url('../assets/Rubik-LightItalic.ttf') format('truetype');
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Rubik';
+            src: url('../assets/Rubik-Medium.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Rubik';
+            src: url('../assets/Rubik-MediumItalic.ttf') format('truetype');
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Rubik';
+            src: url('../assets/Rubik-Black.ttf') format('truetype');
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Rubik';
+            src: url('../assets/Rubik-BlackItalic.ttf') format('truetype');
+            font-weight: 900;
+            font-style: italic;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f3f4f6;
+            font-family: 'Rubik', sans-serif;
+            font-weight: normal;
+        }
+
+        #certificateContainer {
+            width: 100%;
+            max-width: 1000px;
+            padding: 1rem;
+        }
+
+        #certificateContainer .certificate-logo {
+            max-width: 130px;
+            margin: auto;
+            margin-top: 2%;
+        }
+
+        #certificateContainer .certificate-logo img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #certificateContainer #certificate {
+            position: relative;
+            background-color: #dab25d;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            aspect-ratio: 1 / 0.7;
+        }
+
+        #certificateContainer .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 72%;
+            background-color: #2d313c;
+            border-bottom-left-radius: 30%;
+            border-bottom-right-radius: 30%;
+        }
+
+        #certificateContainer .content {
+            position: relative;
+            z-index: 10;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        #certificateContainer h1 {
+            font-size: 25px;
+            color: #fff;
+            margin: 0rem;
+            /* font-family: 'Savoye-Let', sans-serif;
+            src: url('../assets/savoye-let.ttf') format('truetype'); */
+            font-family: 'Rubik', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        #certificateContainer .recipient,
+        #certificateContainer .course {
+            font-size: 1.25rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        #certificateContainer .recipient {
+            margin-bottom: 0rem;
+        }
+
+        #certificateContainer .course {
+            margin-bottom: 2px;
+        }
+
+        #certificateContainer .c-name {
+            max-width: 50%;
+            margin: auto;
+        }
+
+        #certificateContainer #certificate-name {
+            font-size: 2rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 0rem;
+        }
+
+        #certificateContainer .course-name {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #fff;
+            margin-top: 10px;
+        }
+
+        #certificateContainer .details {
+            display: flex;
+            justify-content: space-between;
+            color: #111;
+            margin-top: 16%;
+        }
+
+        #certificateContainer .details div {
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        #certificateContainer .details div p {
+            margin: .25rem 0;
+        }
+
+        #certificateContainer .details .label {
+            font-weight: bold;
+        }
+
+        #certificateContainer .certificate-id {
+            position: absolute;
+            bottom: 1px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: left;
+            color: #2d313c;
+            font-weight: 400;
+            width: 100%;
+        }
+
+        #certificateContainer .certificate-id p {
+            margin-bottom: 15px;
+            padding-left: 15px;
+        }
+
+        #certificateContainer .reward-logo {
+            width: 120px;
+            height: 120px;
+            background: #dab25d;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+
+<body class="figtree-400 bg-[#ede9e6]">
+
+    <div id="certificateContainer">
+        <div id="certificate">
+            <div class="background"></div>
+            <div class="content">
+                <div class="certificate-logo">
+                    <img src="../assets/logo.png" alt="">
+                </div>
+                <h1>Certificate <br> of Completion</h1>
+                <p class="recipient">Proudly Presented to</p>
+                <div class="c-name">
+                    <h2 id="certificate-name"></h2>
+                    <hr>
+                </div>
+                <p class="course">Has successfully completed</p>
+                <h3 class="course-name">Speak English With Aleena</h3>
+                <div class="details">
+                    <div>
+                        <p class="label">Date</p>
+                        <p id="certificate-date"></p>
+                    </div>
+                    <div>
+                        <p class="label">Signature</p>
+                        <p>Jane Smith</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reward-logo">
+
+            </div>
+            <div class="certificate-id">
+                <p>Certificate ID: 12345678</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set recipient name
+            document.getElementById('certificate-name').textContent = 'John Doe';
+
+            // Set current date
+            const currentDate = new Date().toLocaleDateString();
+            document.getElementById('certificate-date').textContent = currentDate;
+        });
+    </script>
+</body>
+
+</html>
