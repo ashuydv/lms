@@ -239,7 +239,7 @@
 
                 try {
                     // Send the data to the server using Axios
-                    const response = await axios.post('http://localhost:3000/save-certificate', {
+                    const response = await axios.post('http://localhost:3000/api/certificates/save-certificate', {
                         uniqueId,
                         name,
                         pdfData: base64data
@@ -250,7 +250,7 @@
                         responseType: 'text'  // To get the raw response text
                     });
 
-                    console.log('Raw server response:', response.data);
+                    console.log('Raw server response:', response, response.data);
 
                     // Parse the raw text as JSON
                     const result = JSON.parse(response.data);
@@ -258,12 +258,7 @@
 
                     return uniqueId;
                 } catch (error) {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'Error saving certificate!',
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    });
+                    console.error(error);
                     throw error;
                 }
             }
@@ -309,20 +304,14 @@
 
         async function listCertificates() {
             try {
-                const response = await axios.get('http://localhost:3000/list-certificates', {
+                const response = await axios.get('http://localhost:3000/api/certificates/list-certificates', {
                     responseType: 'json'
                 });
 
                 const certificates = response.data;
                 displayCertificates(certificates);
             } catch (e) {
-                console.error('Error listing certificates:', e);
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Failed to fetch the list of certificates.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
+                console.error('No certificates found:', e);
             }
         }
 
