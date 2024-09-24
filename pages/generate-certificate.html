@@ -239,7 +239,7 @@
 
                 try {
                     // Send the data to the server using Axios
-                    const response = await axios.post('http://localhost:3000/api/certificates/save-certificate', {
+                    const response = await axios.post('http://localhost:8080/api/certificates/save-certificate', {
                         uniqueId,
                         name,
                         pdfData: base64data
@@ -304,7 +304,7 @@
 
         async function listCertificates() {
             try {
-                const response = await axios.get('http://localhost:3000/api/certificates/list-certificates', {
+                const response = await axios.get('http://localhost:8080/api/certificates/list-certificates', {
                     responseType: 'json'
                 });
 

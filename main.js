@@ -12,6 +12,7 @@ connectDB();
 
 app.use(cors({
     origin: 'http://127.0.0.1:5500',
+    // origin: 'https://ashuydv.github.io/',
     methods: ['POST', 'GET'],
     allowedHeaders: ['Content-Type']
 }));

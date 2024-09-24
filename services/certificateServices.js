@@ -2,9 +2,9 @@ const Certificate = require('../models/Certificate');
 const fs = require('fs').promises;
 const path = require('path');
 
-// Helper function to get the root directory
-const getRootDir = () => {
-    return path.resolve(__dirname, '..');
+// Helper function to get the correct certificates directory
+const getCertificatesDir = () => {
+    return path.join(__dirname, '..', 'certificates');
 };
 
 exports.helloWorld = async (req, res) => {
@@ -13,7 +13,6 @@ exports.helloWorld = async (req, res) => {
 
 exports.saveCertificate = async (req, res) => {
     console.log("Certificate saving request received");
-
     const { uniqueId, name, pdfData } = req.body;
 
     // Validate input
@@ -22,14 +21,14 @@ exports.saveCertificate = async (req, res) => {
     }
 
     const filename = `${uniqueId}_${name.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_certificate.pdf`;
-    const filePath = path.join(getRootDir(), 'certificates', filename);
+    const filePath = path.join(getCertificatesDir(), filename);
 
     try {
         // Remove the data URL prefix to get just the base64 data
         const base64Data = pdfData.replace(/^data:application\/pdf;base64,/, "");
 
-        // Ensure the certificates directory exists in the root folder
-        await fs.mkdir(path.join(getRootDir(), 'certificates'), { recursive: true });
+        // Ensure the certificates directory exists
+        await fs.mkdir(getCertificatesDir(), { recursive: true });
 
         // Write the file
         await fs.writeFile(filePath, base64Data, 'base64');
@@ -51,7 +50,7 @@ exports.saveCertificate = async (req, res) => {
 };
 
 exports.listCertificates = async (req, res) => {
-    const certificatesDir = path.join(getRootDir(), 'certificates');
+    const certificatesDir = getCertificatesDir();
     try {
         const files = await fs.readdir(certificatesDir);
         const certificates = files

@@ -14,12 +14,17 @@
           "resources": [
             {
               "type": "pdf",
-              "title": "Basic English Greetings Guide",
+              "title": "Basic English Greetings 1",
               "url": "/pdfs/basic_greetings.pdf"
             },
             {
               "type": "pdf",
-              "title": "Basic English Greetings Guide",
+              "title": "Basic English Greetings 2",
+              "url": "/pdfs/basic_greetings.pdf"
+            },
+            {
+              "type": "pdf",
+              "title": "Basic English Greetings 2",
               "url": "/pdfs/basic_greetings.pdf"
             }
           ],
